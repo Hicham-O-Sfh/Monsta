@@ -1164,7 +1164,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .header_middel {
   padding: 40px 0;
-  border-bottom: 1px solid #ebebeb;
+  /* border-bottom: 1px solid #ebebeb; */
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .header_middel {
@@ -1372,14 +1372,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .cart_link > a i.ion-android-cart {
   font-size: 19px;
   margin-right: 10px;
-  border-right: 1px solid #ebebeb;
   position: relative;
   top: 3px;
-  padding-right: 10px;
+  padding-right: 3px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .cart_link > a i.ion-android-cart {
-    font-size: 14px;
+    font-size: 19px;
     margin-right: 4px;
   }
 }
@@ -1448,7 +1447,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .mini_cart_footer {
   padding: 20px 18px;
-  background: #242424;
+  /* background: #242424; */
 }
 
 .cart_img {
@@ -4433,7 +4432,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 /*  04. banner section css here  */
 .banner_section {
-  border-bottom: 1px solid #ebebeb;
+  /* border-bottom: 1px solid #ebebeb; */
   margin-bottom: 70px;
 }
 @media only screen and (max-width: 767px) {
@@ -4535,11 +4534,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 .banner_fullwidth .row {
-  height: 510px;
+  height: 350px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .banner_fullwidth .row {
-    height: 400px;
+    height: 350px;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -5248,15 +5247,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   display: none !important;
 }
 
-.single_product:hover .product_thumb a.secondary_img {
-  opacity: 1;
-  visibility: visible;
-}
-.single_product:hover .quick_button {
-  opacity: 1;
-  visibility: visible;
-}
-
 .product_thumb {
   position: relative;
   margin-bottom: 8px;
@@ -5359,16 +5349,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   -webkit-transition: 0.3s;
   transition: 0.3s;
   margin-bottom: 30px;
-}
-.single_product:hover {
-  background: #ffffff;
-  border-radius: 3px;
-  box-shadow: 0px 0 15px 0 rgba(0, 0, 0, 0.3);
-}
-.single_product:hover .product_hover {
-  top: 66%;
-  opacity: 1;
-  visibility: visible;
 }
 
 .product_ratings {
@@ -5611,9 +5591,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 .product_black_section .single_product {
   padding: 15px 17px;
-}
-.product_black_section .single_product:hover {
-  background: #242424;
 }
 .product_black_section .product_hover {
   background: #242424;
