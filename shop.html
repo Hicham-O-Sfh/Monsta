@@ -28,7 +28,7 @@
 <body>
 
     <!-- Main Wrapper Start -->
-    <!--Offcanvas menu area start-->
+    <!--Offcanvas menu area start #generic-->
     <div class="off_canvars_overlay">
 
     </div>
@@ -40,13 +40,25 @@
                         <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
                     </div>
                     <div class="Offcanvas_menu_wrapper">
+                        <div class="canvas_close">
+                            <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                        </div>
                         <div id="menu" class="text-left ">
                             <ul class="offcanvas_main_menu">
-                                <li class="menu-item-has-children active">
-                                    <a href="index.html">Home</a>
+                                <li>
+                                    <a href="index.html">Accueil</a>
                                 </li>
-                                <li class="menu-item-has-children">
-                                    <a href="shop.html">Shop</a>
+                                <li class="active">
+                                    <a href="shop.html">Catalogue</a>
+                                </li>
+                                <li>
+                                    <a href="services.html">Services</a>
+                                </li>
+                                <li>
+                                    <a href="faq.html">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="">Contactez-nous</a>
                                 </li>
                             </ul>
                         </div>
@@ -57,20 +69,83 @@
     </div>
     <!--Offcanvas menu area end-->
 
-    <!--header area start-->
+    <!--header area start #generic-->
     <header class="header_area">
         <!--header middel start-->
         <div class="header_middel">
             <div class="container">
                 <div class="row align-items-center">
-
-                    <div class="col-lg-5"></div>
+                    <div class="col-lg-5">
+                    </div>
                     <div class="col-lg-2 col-md-3 col-4">
                         <div class="logo">
                             <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
                         </div>
                     </div>
-                    <div class="col-lg-5 col-md-7 col-6"></div>
+                    <div class="col-lg-5 col-md-7 col-6">
+                        <div class="justify-content-end middel_right">
+                            <div class="cart_link">
+                                <a href="#">
+                                    <i class="ion-android-cart"></i>
+                                </a>
+                                <span class="cart_quantity">2</span>
+                                <!--mini cart-->
+                                <div class="mini_cart">
+                                    <div class="cart_close">
+                                        <div class="cart_text">
+                                            <h3>cart</h3>
+                                        </div>
+                                        <div class="mini_cart_close">
+                                            <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="cart_item">
+                                        <div class="cart_img">
+                                            <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
+                                        </div>
+                                        <div class="cart_info">
+                                            <a href="#">Letraset animal</a>
+
+                                            <span class="quantity">Qty: 1</span>
+                                            <span class="price_cart">$60.00</span>
+
+                                        </div>
+                                        <div class="cart_remove">
+                                            <a href="#"><i class="ion-android-close"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="cart_item">
+                                        <div class="cart_img">
+                                            <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
+                                        </div>
+                                        <div class="cart_info">
+                                            <a href="#">Natural passages</a>
+                                            <span class="quantity">Qty: 1</span>
+                                            <span class="price_cart">$69.00</span>
+                                        </div>
+                                        <div class="cart_remove">
+                                            <a href="#"><i class="ion-android-close"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="cart_total">
+                                        <span>Subtotal:</span>
+                                        <span>138.00</span>
+                                    </div>
+                                    <div class="mini_cart_footer">
+                                        <div class="cart_button view_cart">
+                                            <a href="cart.html">View cart</a>
+                                        </div>
+                                        <div class="cart_button checkout">
+                                            <a class="active" href="checkout.html">Checkout</a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!--mini cart end-->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,16 +163,20 @@
                             <div class="main_menu">
                                 <nav>
                                     <ul>
-
+                                        <li>
+                                            <a href="index.html">Accueil</a>
+                                        </li>
                                         <li class="active">
-                                            <a href="index.html">
-                                                Accueil
-                                            </a>
+                                            <a href="shop.html">Catalogue</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html">
-                                                shop
-                                            </a>
+                                            <a href="services.html">Services</a>
+                                        </li>
+                                        <li>
+                                            <a href="faq.html">FAQ</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Contactez-nous</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -111,25 +190,6 @@
         <!--header bottom end-->
     </header>
     <!--header area end-->
-
-
-    <!--breadcrumbs area start-->
-    <div class="breadcrumbs_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb_content">
-                        <ul>
-                            <li><a href="index.html">Accueil</a></li>
-                            <li>></li>
-                            <li>Shop</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--breadcrumbs area end-->
 
     <!--shop  area start-->
     <div class="shop_area shop_fullwidth shop_reverse">
@@ -1380,9 +1440,8 @@
     </div>
     <!--shop  area end-->
 
-
-    <!--footer area start-->
-    <footer class="footer_widgets">
+    <!--footer area start #generic -->
+    <footer class="footer_widgets border-top pt-5">
         <div class="container">
             <div class="footer_top">
                 <div class="row">

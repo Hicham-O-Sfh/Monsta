@@ -26,7 +26,7 @@
 <body>
 
     <!-- Main Wrapper Start -->
-    <!--Offcanvas menu area start-->
+    <!--Offcanvas menu area start #generic-->
     <div class="off_canvars_overlay">
 
     </div>
@@ -38,13 +38,25 @@
                         <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
                     </div>
                     <div class="Offcanvas_menu_wrapper">
+                        <div class="canvas_close">
+                            <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                        </div>
                         <div id="menu" class="text-left ">
                             <ul class="offcanvas_main_menu">
-                                <li class="menu-item-has-children active">
-                                    <a href="index.html">Home</a>
+                                <li class="active">
+                                    <a href="index.html">Accueil</a>
                                 </li>
-                                <li class="menu-item-has-children">
-                                    <a href="shop.html">Shop</a>
+                                <li>
+                                    <a href="shop.html">Catalogue</a>
+                                </li>
+                                <li>
+                                    <a href="services.html">Services</a>
+                                </li>
+                                <li>
+                                    <a href="faq.html">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="">Contactez-nous</a>
                                 </li>
                             </ul>
                         </div>
@@ -55,20 +67,79 @@
     </div>
     <!--Offcanvas menu area end-->
 
-    <!--header area start-->
+    <!--header area start #generic-->
     <header class="header_area">
         <!--header middel start-->
         <div class="header_middel">
             <div class="container">
                 <div class="row align-items-center">
-
-                    <div class="col-lg-5"></div>
+                    <div class="col-lg-5">
+                    </div>
                     <div class="col-lg-2 col-md-3 col-4">
                         <div class="logo">
                             <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
                         </div>
                     </div>
-                    <div class="col-lg-5 col-md-7 col-6"></div>
+                    <div class="col-lg-5 col-md-7 col-6">
+                        <div class="justify-content-end middel_right">
+                            <div class="cart_link">
+                                <a href="#">
+                                    <i class="ion-android-cart"></i>
+                                </a>
+                                <span class="cart_quantity">2</span>
+                                <!--mini cart-->
+                                <div class="mini_cart">
+                                    <div class="cart_close">
+                                        <div class="cart_text">
+                                            <h3>cart</h3>
+                                        </div>
+                                        <div class="mini_cart_close">
+                                            <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="cart_item" id="111">
+                                        <div class="cart_img">
+                                            <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
+                                        </div>
+                                        <div class="cart_info">
+                                            <a href="#">Letraset animal</a>
+
+                                            <span class="quantity">Qty: 1</span>
+                                            <span class="price_cart">$60.00</span>
+
+                                        </div>
+                                        <div class="cart_remove">
+                                            <a href="#"><i class="ion-android-close remove-from-cart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="cart_item" id="112">
+                                        <div class="cart_img">
+                                            <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
+                                        </div>
+                                        <div class="cart_info">
+                                            <a href="#">Natural passages</a>
+                                            <span class="quantity">Qty: 1</span>
+                                            <span class="price_cart">$69.00</span>
+                                        </div>
+                                        <div class="cart_remove">
+                                            <a href="#"><i class="ion-android-close remove-from-cart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="cart_total">
+                                        <span>Subtotal:</span>
+                                        <span>138.00</span>
+                                    </div>
+                                    <div class="mini_cart_footer">
+                                        <div class="cart_button checkout">
+                                            <a class="active" href="checkout.html">💖 Commander 💖</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--mini cart end-->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,16 +157,20 @@
                             <div class="main_menu">
                                 <nav>
                                     <ul>
-
                                         <li class="active">
-                                            <a href="index.html">
-                                                Accueil
-                                            </a>
+                                            <a href="index.html">Accueil</a>
                                         </li>
                                         <li>
-                                            <a href="shop.html">
-                                                shop
-                                            </a>
+                                            <a href="shop.html">Catalogue</a>
+                                        </li>
+                                        <li>
+                                            <a href="services.html">Services</a>
+                                        </li>
+                                        <li>
+                                            <a href="faq.html">FAQ</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Contactez-nous</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -113,7 +188,7 @@
 
     <!--slider area start-->
     <div class="slider_area home_slider_two owl-carousel">
-        <div class="single_slider" data-bgimg="assets/img/slider/slider3.jpg">
+        <div class="single_slider" data-bgimg="assets/img/slider/slider4.jpg">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-12">
@@ -127,7 +202,7 @@
                 </div>
             </div>
         </div>
-        <div class="single_slider" data-bgimg="assets/img/slider/slider4.jpg">
+        <div class="single_slider" data-bgimg="assets/img/slider/slider3.jpg">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-12">
@@ -152,7 +227,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single_banner">
                         <div class="banner_thumb">
-                            <a href="shop.html"><img src="assets/img/bg/banner1.jpg" alt=""></a>
+                            <div>
+                                <img src="assets/img/bg/banner1.jpg" alt="">
+                            </div>
                             <div class="banner_content">
                                 <p>Design Creative</p>
                                 <h2>Ring Jewelry Design</h2>
@@ -165,7 +242,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single_banner">
                         <div class="banner_thumb">
-                            <a href="shop.html"><img src="assets/img/bg/banner2.jpg" alt=""></a>
+                            <div>
+                                <img src="assets/img/bg/banner2.jpg" alt="">
+                            </div>
                             <div class="banner_content">
                                 <p>Bestselling Products</p>
                                 <h2>Victoria Diamonds</h2>
@@ -178,7 +257,9 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single_banner bottom">
                         <div class="banner_thumb">
-                            <a href="shop.html"><img src="assets/img/bg/banner3.jpg" alt=""></a>
+                            <div>
+                                <img src="assets/img/bg/banner3.jpg" alt="">
+                            </div>
                             <div class="banner_content">
                                 <p>Onsale Products</p>
                                 <h2>Perfect Rings</h2>
@@ -2880,7 +2961,7 @@
     </section>
     <!--product section area end-->
 
-    <!--footer area start-->
+    <!--footer area start #generic-->
     <footer class="footer_widgets">
         <div class="container">
             <div class="footer_top">
