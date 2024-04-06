@@ -1,8 +1,6 @@
 (function ($) {
   "use strict";
 
-  new WOW().init();
-
   /*---background image---*/
   function dataBackgroundImage() {
     $("[data-bgimg]").each(function () {
@@ -551,4 +549,43 @@
     dropRadius: 20,
     perturbance: 0.04,
   });
+
+  (function setMockCart() {
+    var cart = [
+      { id: 111, ref: "ref-produit-111", price: 120, quantity: 2 },
+      { id: 112, ref: "ref-produit-112", price: 150, quantity: 1 },
+    ];
+    localStorage.setItem("panier", JSON.stringify(cart));
+  })();
+
+  $(".button-add-to-cart").click(function () {
+    var userCart = retrieveUserCartFromLocalStorage();
+    // todo : remove mocked product
+    var productToAdd = {
+      id: 333,
+      ref: "ref-produit-333",
+      price: 200,
+      quantity: 5,
+    };
+    userCart.push(productToAdd);
+    localStorage.setItem("panier", JSON.stringify(userCart));
+  });
+
+  // todo : verify elements with class "ion-android-close"
+  $(".ion-android-close.remove-from-cart").click(function () {
+    var userCart = retrieveUserCartFromLocalStorage();
+    var cartItemToDelete = $(this).parent().closest(".cart_item").get(0);
+
+    userCart = userCart.filter(
+      (produit) => produit.id != cartItemToDelete.id
+    );
+    localStorage.setItem("panier", JSON.stringify(userCart));
+    $(cartItemToDelete).remove();
+  });
+
+  function retrieveUserCartFromLocalStorage() {
+    var rawUserCart = localStorage.getItem("panier");
+    var userCart = JSON.parse(rawUserCart);
+    return userCart;
+  }
 })(jQuery);
