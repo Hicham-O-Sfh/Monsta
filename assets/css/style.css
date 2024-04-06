@@ -1164,7 +1164,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .header_middel {
   padding: 40px 0;
-  /* border-bottom: 1px solid #ebebeb; */
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .header_middel {
