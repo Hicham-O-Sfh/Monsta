@@ -4237,7 +4237,7 @@ textarea:-ms-input-placeholder {
 /*home two css here*/
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
   .home_slider_two .slider_content {
-    margin-left: 170px;
+    margin-left: 110px;
     overflow: hidden;
   }
 }
