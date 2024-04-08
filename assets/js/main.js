@@ -354,7 +354,7 @@
     language: "en",
     callback: mailChimpResponse,
     // ADD YOUR MAILCHIMP URL BELOW HERE!
-    url: "http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef",
+    url: "",
   });
   function mailChimpResponse(resp) {
     if (resp.result === "success") {
@@ -454,35 +454,6 @@
     }
   });
 
-  /*---Newsletter Popup---*/
-
-  // setTimeout(function () {
-  //   if ($.cookie("shownewsletter") == 1) $(".newletter-popup").hide();
-  //   $("#subscribe_pemail").keypress(function (e) {
-  //     if (e.which == 13) {
-  //       e.preventDefault();
-  //       email_subscribepopup();
-  //     }
-  //     var name = $(this).val();
-  //     $("#subscribe_pname").val(name);
-  //   });
-  //   $("#subscribe_pemail").change(function () {
-  //     var name = $(this).val();
-  //     $("#subscribe_pname").val(name);
-  //   });
-  //   //transition effect
-  //   if ($.cookie("shownewsletter") != 1) {
-  //     $(".newletter-popup").bPopup();
-  //   }
-  //   $("#newsletter_popup_dont_show_again").on("change", function () {
-  //     if ($.cookie("shownewsletter") != 1) {
-  //       $.cookie("shownewsletter", "1");
-  //     } else {
-  //       $.cookie("shownewsletter", "0");
-  //     }
-  //   });
-  // }, 2500);
-
   /*---mini cart activation---*/
   $(".cart_link > a").on("click", function () {
     $(".mini_cart,.off_canvars_overlay").addClass("active");
@@ -550,12 +521,29 @@
     perturbance: 0.04,
   });
 
+  // Cart management
+  const dataBase = [
+    {
+      id: 1,
+      ref: "ref-produit-1",
+      price: 100,
+      pics: [{ url: "assets/img/s-product/product.jpg" }],
+    },
+    {
+      id: 2,
+      ref: "ref-produit-2",
+      price: 200,
+      pics: [{ url: "assets/img/s-product/product2.jpg" }],
+    },
+  ];
+
   (function setMockCart() {
     var cart = [
-      { id: 111, ref: "ref-produit-111", price: 120, quantity: 2 },
-      { id: 112, ref: "ref-produit-112", price: 150, quantity: 1 },
+      { id: 1, quantity: 10 },
+      { id: 2, quantity: 20 },
     ];
     localStorage.setItem("panier", JSON.stringify(cart));
+    buildVisualCart();
   })();
 
   $(".button-add-to-cart").click(function () {
@@ -563,23 +551,25 @@
     // todo : remove mocked product
     var productToAdd = {
       id: 333,
-      ref: "ref-produit-333",
-      price: 200,
-      quantity: 5,
+      quantity: 333,
     };
     userCart.push(productToAdd);
     localStorage.setItem("panier", JSON.stringify(userCart));
+    buildVisualCart();
   });
 
-  // todo : verify elements with class "ion-android-close"
+  // todo : verify all elements with class "ion-android-close"
   $(".ion-android-close.remove-from-cart").click(function () {
+    // get cart item from client storage
     var userCart = retrieveUserCartFromLocalStorage();
+    // get cart item from DOM
     var cartItemToDelete = $(this).parent().closest(".cart_item").get(0);
 
-    userCart = userCart.filter(
-      (produit) => produit.id != cartItemToDelete.id
-    );
+    // remove cart item from client storage
+    userCart = userCart.filter((produit) => produit.id != cartItemToDelete.id);
     localStorage.setItem("panier", JSON.stringify(userCart));
+
+    // remove cart item from DOM
     $(cartItemToDelete).remove();
   });
 
@@ -587,5 +577,38 @@
     var rawUserCart = localStorage.getItem("panier");
     var userCart = JSON.parse(rawUserCart);
     return userCart;
+  }
+
+  function getProductFromDatabase(idProduct) {
+    return dataBase.filter((prod) => prod.id === idProduct)[0];
+  }
+
+  function buildVisualCart() {
+    var userCart = retrieveUserCartFromLocalStorage();
+    Array.from(userCart).forEach((product) => {
+      const productFromDb = getProductFromDatabase(product.id);
+      $("#cart-items").html(
+        $("#cart-items").html() +
+          `
+        <div class="cart_item" id="${product.id}">
+          <div class="cart_img">
+            <a href="#">
+              <img src="${productFromDb.pics[0].url}" alt=""/>
+            </a>
+          </div>
+          <div class="cart_info">
+            <a href="#">${productFromDb.ref}</a>
+            <span class="quantity">quantité: ${product.quantity}</span>
+            <span class="price_cart">${productFromDb.price} Dhs</span>
+          </div>
+          <div class="cart_remove">
+            <a href="#">
+              <i class="ion-android-close remove-from-cart"></i>
+            </a>
+          </div>
+        </div>
+        `
+      );
+    });
   }
 })(jQuery);
