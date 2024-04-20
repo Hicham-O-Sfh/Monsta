@@ -553,9 +553,11 @@
     };
 
     addOrderToCart(orderToAdd);
+
+    // update the cart display on DOM
+    buildVisualCart();
   });
 
-  // todo : verify all elements with class "ion-android-close"
   $("body").on("click", ".ion-android-close.remove-from-cart", function () {
     // get cart item from client storage
     var userCart = retrieveUserCartFromLocalStorage();
@@ -583,7 +585,6 @@
       userCart.push(orderToAdd);
     }
     localStorage.setItem("panier", JSON.stringify(userCart));
-    buildVisualCart();
   }
 
   /**
@@ -603,10 +604,12 @@
 
   function buildVisualCart() {
     var userCart = retrieveUserCartFromLocalStorage();
+    var subTotal = 0;
     $("#cart-quantity").html(userCart.length);
     $("#cart-items").empty("");
     Array.from(userCart).forEach((order) => {
       const mappedProductFromDb = getProductFromDatabase(order.productId);
+      subTotal += order.quantity * mappedProductFromDb.price;
       $("#cart-items").html(
         $("#cart-items").html() +
           `
@@ -630,6 +633,9 @@
         `
       );
     });
+
+    // calcul subtotal
+    $("#subtotal").html(`${subTotal} Dhs`);
   }
 
   (function setMockCart() {
