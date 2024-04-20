@@ -544,34 +544,47 @@
   ];
 
   $(".button-add-to-cart").click(function () {
-    var userCart = retrieveUserCartFromLocalStorage();
     var productId = $(this).data("id");
-    var quantity = $("#product-quantity").val();
+    var quantity = +$("#product-quantity").val();
 
-    var productToAdd = {
-      id: productId,
+    var orderToAdd = {
+      productId: productId,
       quantity: quantity,
     };
 
-    userCart.push(productToAdd);
-    localStorage.setItem("panier", JSON.stringify(userCart));
-    buildVisualCart();
+    addOrderToCart(orderToAdd);
   });
 
   // todo : verify all elements with class "ion-android-close"
-  $(".ion-android-close.remove-from-cart").click(function () {
+  $("body").on("click", ".ion-android-close.remove-from-cart", function () {
     // get cart item from client storage
     var userCart = retrieveUserCartFromLocalStorage();
     // get cart item from DOM
     var cartItemToDelete = $(this).parent().closest(".cart_item").get(0);
 
     // remove cart item from client storage
-    userCart = userCart.filter((produit) => produit.id != cartItemToDelete.id);
+    userCart = userCart.filter(
+      (order) => order.productId != cartItemToDelete.id
+    );
     localStorage.setItem("panier", JSON.stringify(userCart));
 
-    // remove cart item from DOM
-    $(cartItemToDelete).remove();
+    // remove & update the cart in the DOM
+    buildVisualCart();
   });
+
+  function addOrderToCart(orderToAdd) {
+    var userCart = retrieveUserCartFromLocalStorage();
+    var relatedOrderFromCart = userCart.find(
+      (order) => order.productId === orderToAdd.productId
+    );
+    if (relatedOrderFromCart) {
+      relatedOrderFromCart.quantity += +orderToAdd.quantity;
+    } else {
+      userCart.push(orderToAdd);
+    }
+    localStorage.setItem("panier", JSON.stringify(userCart));
+    buildVisualCart();
+  }
 
   /**
    * retrieves userCart from local storage
@@ -592,12 +605,12 @@
     var userCart = retrieveUserCartFromLocalStorage();
     $("#cart-quantity").html(userCart.length);
     $("#cart-items").empty("");
-    Array.from(userCart).forEach((productFromCart) => {
-      const mappedProductFromDb = getProductFromDatabase(productFromCart.id);
+    Array.from(userCart).forEach((order) => {
+      const mappedProductFromDb = getProductFromDatabase(order.productId);
       $("#cart-items").html(
         $("#cart-items").html() +
           `
-        <div class="cart_item" id="${productFromCart.id}">
+        <div class="cart_item" id="${order.productId}">
           <div class="cart_img">
             <a href="#">
               <img src="${mappedProductFromDb.pics[0].url}" alt=""/>
@@ -605,7 +618,7 @@
           </div>
           <div class="cart_info">
             <a href="#">${mappedProductFromDb.ref}</a>
-            <span class="quantity">quantité: ${productFromCart.quantity}</span>
+            <span class="quantity">quantité: ${order.quantity}</span>
             <span class="price_cart">${mappedProductFromDb.price} Dhs</span>
           </div>
           <div class="cart_remove">
@@ -621,8 +634,8 @@
 
   (function setMockCart() {
     var cart = [
-      { id: 1, quantity: 10 },
-      { id: 2, quantity: 20 },
+      { productId: 1, quantity: 10 },
+      { productId: 2, quantity: 20 },
     ];
     localStorage.setItem("panier", JSON.stringify(cart));
     buildVisualCart();
