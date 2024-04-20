@@ -89,7 +89,7 @@
                   <a href="#">
                     <i class="ion-android-cart"></i>
                   </a>
-                  <span class="cart_quantity">2</span>
+                  <span class="cart_quantity" id="cart-quantity">0</span>
                   <!--mini cart-->
                   <div class="mini_cart">
                     <div class="cart_close">
@@ -276,8 +276,16 @@
 
               <div class="product_variant quantity">
                 <label>Quantité</label>
-                <input min="1" max="100" value="1" type="number" />
-                <button class="button-add-to-cart">Ajouter au panier !</button>
+                <input
+                  id="product-quantity"
+                  min="1"
+                  max="50"
+                  value="1"
+                  type="number"
+                />
+                <button class="button-add-to-cart" data-id="3">
+                  Ajouter au panier !
+                </button>
               </div>
             </div>
           </div>

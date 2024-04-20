@@ -535,24 +535,24 @@
       price: 200,
       pics: [{ url: "assets/img/s-product/product2.jpg" }],
     },
+    {
+      id: 3,
+      ref: "ref-produit-3",
+      price: 300,
+      pics: [{ url: "assets/img/s-product/product3.jpg" }],
+    },
   ];
-
-  (function setMockCart() {
-    var cart = [
-      { id: 1, quantity: 10 },
-      { id: 2, quantity: 20 },
-    ];
-    localStorage.setItem("panier", JSON.stringify(cart));
-    buildVisualCart();
-  })();
 
   $(".button-add-to-cart").click(function () {
     var userCart = retrieveUserCartFromLocalStorage();
-    // todo : remove mocked product
+    var productId = $(this).data("id");
+    var quantity = $("#product-quantity").val();
+
     var productToAdd = {
-      id: 333,
-      quantity: 333,
+      id: productId,
+      quantity: quantity,
     };
+
     userCart.push(productToAdd);
     localStorage.setItem("panier", JSON.stringify(userCart));
     buildVisualCart();
@@ -573,10 +573,15 @@
     $(cartItemToDelete).remove();
   });
 
+  /**
+   * retrieves userCart from local storage
+   * and convert it to array
+   * @returns array of cart items: userCart
+   */
   function retrieveUserCartFromLocalStorage() {
     var rawUserCart = localStorage.getItem("panier");
     var userCart = JSON.parse(rawUserCart);
-    return userCart;
+    return Array.from(userCart);
   }
 
   function getProductFromDatabase(idProduct) {
@@ -585,21 +590,23 @@
 
   function buildVisualCart() {
     var userCart = retrieveUserCartFromLocalStorage();
-    Array.from(userCart).forEach((product) => {
-      const productFromDb = getProductFromDatabase(product.id);
+    $("#cart-quantity").html(userCart.length);
+    $("#cart-items").empty("");
+    Array.from(userCart).forEach((productFromCart) => {
+      const mappedProductFromDb = getProductFromDatabase(productFromCart.id);
       $("#cart-items").html(
         $("#cart-items").html() +
           `
-        <div class="cart_item" id="${product.id}">
+        <div class="cart_item" id="${productFromCart.id}">
           <div class="cart_img">
             <a href="#">
-              <img src="${productFromDb.pics[0].url}" alt=""/>
+              <img src="${mappedProductFromDb.pics[0].url}" alt=""/>
             </a>
           </div>
           <div class="cart_info">
-            <a href="#">${productFromDb.ref}</a>
-            <span class="quantity">quantité: ${product.quantity}</span>
-            <span class="price_cart">${productFromDb.price} Dhs</span>
+            <a href="#">${mappedProductFromDb.ref}</a>
+            <span class="quantity">quantité: ${productFromCart.quantity}</span>
+            <span class="price_cart">${mappedProductFromDb.price} Dhs</span>
           </div>
           <div class="cart_remove">
             <a href="#">
@@ -611,4 +618,13 @@
       );
     });
   }
+
+  (function setMockCart() {
+    var cart = [
+      { id: 1, quantity: 10 },
+      { id: 2, quantity: 20 },
+    ];
+    localStorage.setItem("panier", JSON.stringify(cart));
+    buildVisualCart();
+  })();
 })(jQuery);
