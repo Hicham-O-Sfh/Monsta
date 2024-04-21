@@ -1,7 +1,13 @@
-import {
-  MAIN_DATABASE,
-  getProductFromDatabase,
-} from "./database.management.js";
+import { getProductFromDatabase } from "./database.management.js";
+
+Array.prototype.shiftOutAndDelete = function (predicate) {
+  var uniqueIterator;
+  for (uniqueIterator in this) {
+    if (predicate(this[uniqueIterator])) {
+      return this.splice(uniqueIterator, 1)[0];
+    }
+  }
+};
 
 (function ($) {
   "use strict";
@@ -213,36 +219,6 @@ import {
   });
 
   /*---single product activation---*/
-  $(".single-product-active").owlCarousel({
-    autoplay: true,
-    loop: true,
-    nav: true,
-    autoplay: false,
-    autoplayTimeout: 8000,
-    items: 4,
-    margin: 15,
-    dots: false,
-    navText: [
-      '<i class="fa fa-angle-left"></i>',
-      '<i class="fa fa-angle-right"></i>',
-    ],
-    responsiveClass: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      320: {
-        items: 2,
-      },
-      992: {
-        items: 3,
-      },
-      1200: {
-        items: 4,
-      },
-    },
-  });
-
   /*---product navactive activation---*/
   $(".product_navactive").owlCarousel({
     autoplay: true,
@@ -288,6 +264,8 @@ import {
     $(".product-details-large .tab-pane").removeClass("active show");
     $(".product-details-large " + $href).addClass("active show");
   });
+    });
+  }
 
   /*---testimonial active activation---*/
   $(".testimonial_active").owlCarousel({
@@ -396,12 +374,14 @@ import {
   $(".niceselect_option").niceSelect();
 
   /*---elevateZoom---*/
-  $("#zoom1").elevateZoom({
-    gallery: "gallery_01",
-    responsive: true,
-    cursor: "crosshair",
-    zoomType: "inner",
-  });
+  function applyElevateZoom() {
+    $("#zoom1").elevateZoom({
+      gallery: "gallery_01",
+      responsive: true,
+      cursor: "crosshair",
+      zoomType: "inner",
+    });
+  }
 
   /*---portfolio Isotope activation---*/
   $(".portfolio_gallery").imagesLoaded(function () {
@@ -598,7 +578,7 @@ import {
         <div class="cart_item" id="${order.productId}">
           <div class="cart_img">
             <a href="#">
-              <img src="${mappedProductFromDb.pics[0].url}" alt=""/>
+              <img src="${mappedProductFromDb.pics[0].smallPicUrl}" alt=""/>
             </a>
           </div>
           <div class="cart_info">
@@ -622,11 +602,41 @@ import {
 
   (function projectProductInPage() {
     // TODO: remove mocked product Id
+    // TODO: handle loading process
     const productId = 1;
-    var product = getProductFromDatabase(productId);
+    const product = getProductFromDatabase(productId);
     $("#product-name").html(product.ref);
     $("#product-description").html(product.description);
     $("#product-price").html(`${product.price} Dhs`);
+
+    // product's pictures & zoom management
+    const productMainPic = product.pics.shiftOutAndDelete(
+      (img) => img.isMain === true
+    ).bigPicUrl;
+    product.pics.forEach((pic) => {
+      $("#gallery_01").html(
+        $("#gallery_01").html() +
+          `
+        <li>
+          <a
+            href="#"
+            class="elevatezoom-gallery active"
+            data-update=""
+            data-image="${pic.bigPicUrl}"
+            data-zoom-image="${pic.bigPicUrl}">
+            <img
+              src="${pic.smallPicUrl}"
+              alt="zo-th-1"/>
+          </a>
+        </li>
+        `
+      );
+    });
+    applyOwlCarousel();
+
+    $("#zoom1").prop("src", productMainPic);
+    $("#zoom1").data("zoom-image", productMainPic);
+    applyElevateZoom();
   })();
 
   (function setMockCart() {
