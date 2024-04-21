@@ -6,3 +6,11 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
     }
   }
 };
+
+function isValidNumberInputValue(value) {
+  return !isNaN(value) && parseInt(value) > 0;
+}
+
+function saveCartInLocalStorage(cart) {
+  localStorage.setItem("panier", JSON.stringify(cart));
+}

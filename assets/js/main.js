@@ -482,7 +482,7 @@ import {
   });
 
   // Cart management
-  $(".button-add-to-cart").click(function () {
+  $("#button-add-to-cart").click(function () {
     var productId = $(this).data("id");
     var quantity = +$("#product-quantity").val();
 
@@ -497,6 +497,13 @@ import {
     buildVisualCart();
   });
 
+  $("#product-quantity").on("input", function () {
+    $("#button-add-to-cart").prop(
+      "disabled",
+      !isValidNumberInputValue($(this).val())
+    );
+  });
+
   $("body").on("click", ".ion-android-close.remove-from-cart", function () {
     // get cart item from client storage
     var userCart = retrieveUserCartFromLocalStorage();
@@ -507,7 +514,7 @@ import {
     userCart = userCart.filter(
       (order) => order.productId != cartItemToDelete.id
     );
-    localStorage.setItem("panier", JSON.stringify(userCart));
+    saveCartInLocalStorage(userCart);
 
     // remove & update the cart in the DOM
     buildVisualCart();
@@ -523,7 +530,7 @@ import {
     } else {
       userCart.push(orderToAdd);
     }
-    localStorage.setItem("panier", JSON.stringify(userCart));
+    saveCartInLocalStorage(userCart);
   }
 
   /**
@@ -580,7 +587,6 @@ import {
     const url = new URL(window.location.href);
     const productId = +url.searchParams.get("productId");
 
-    // TODO: handle loading process
     const product = getProductFromDatabase(productId);
     $("#product-name").html(product.ref);
     $("#product-description").html(product.description);
@@ -620,7 +626,10 @@ import {
       { productId: 1, quantity: 10 },
       { productId: 2, quantity: 20 },
     ];
-    localStorage.setItem("panier", JSON.stringify(cart));
+    saveCartInLocalStorage(cart);
     buildVisualCart();
   })();
 })(jQuery);
+
+// TODO: create skeleton loading process
+// TODO: create & handle promise
