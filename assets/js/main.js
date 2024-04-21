@@ -219,51 +219,33 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
   });
 
   /*---single product activation---*/
-  /*---product navactive activation---*/
-  $(".product_navactive").owlCarousel({
-    autoplay: true,
-    loop: true,
-    nav: true,
-    autoplay: false,
-    autoplayTimeout: 8000,
-    items: 4,
-    dots: false,
-    navText: [
-      '<i class="fa fa-angle-left"></i>',
-      '<i class="fa fa-angle-right"></i>',
-    ],
-    responsiveClass: true,
-    responsive: {
-      0: {
-        items: 1,
+  function applyOwlCarousel() {
+    $(".single-product-active").owlCarousel({
+      autoplay: false,
+      loop: true,
+      nav: true,
+      items: 4,
+      margin: 15,
+      dots: false,
+      navText: [
+        '<i class="fa fa-angle-left"></i>',
+        '<i class="fa fa-angle-right"></i>',
+      ],
+      responsiveClass: true,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        320: {
+          items: 2,
+        },
+        992: {
+          items: 3,
+        },
+        1200: {
+          items: 4,
+        },
       },
-      250: {
-        items: 2,
-      },
-      480: {
-        items: 3,
-      },
-      768: {
-        items: 4,
-      },
-    },
-  });
-
-  $(".modal").on("shown.bs.modal", function (e) {
-    $(".product_navactive").resize();
-  });
-
-  $(".product_navactive a").on("click", function (e) {
-    e.preventDefault();
-
-    var $href = $(this).attr("href");
-
-    $(".product_navactive a").removeClass("active");
-    $(this).addClass("active");
-
-    $(".product-details-large .tab-pane").removeClass("active show");
-    $(".product-details-large " + $href).addClass("active show");
-  });
     });
   }
 
@@ -507,8 +489,6 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
   });
 
   // Cart management
-  const dataBase = MAIN_DATABASE;
-
   $(".button-add-to-cart").click(function () {
     var productId = $(this).data("id");
     var quantity = +$("#product-quantity").val();

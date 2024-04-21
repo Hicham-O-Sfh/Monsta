@@ -11268,40 +11268,6 @@ textarea:-ms-input-placeholder {
   padding-bottom: 23px;
 }
 
-.product_navactive.owl-carousel:hover .owl-nav div {
-  opacity: 1;
-  visibility: visible;
-}
-.product_navactive.owl-carousel .owl-nav {
-  display: block;
-}
-.product_navactive.owl-carousel .owl-nav div {
-  position: absolute;
-  background: #f2f2f2;
-  border-radius: 3px;
-  color: #333;
-  height: 32px;
-  top: 50%;
-  transform: translatey(-50%);
-  width: 32px;
-  text-align: center;
-  line-height: 32px;
-  left: -7px;
-  font-size: 18px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  opacity: 0;
-  visibility: hidden;
-}
-.product_navactive.owl-carousel .owl-nav div:hover {
-  background: #c09578;
-  color: #ffffff;
-}
-.product_navactive.owl-carousel .owl-nav div.owl-next {
-  right: -7px;
-  left: auto;
-}
-
 /*modal css end*/
 /*  23. newsletter popup css here */
 .newletter-popup {
