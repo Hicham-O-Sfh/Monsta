@@ -576,9 +576,11 @@ import {
   }
 
   (function projectProductInPage() {
-    // TODO: remove mocked product Id
+    // get productId from query string
+    const url = new URL(window.location.href);
+    const productId = +url.searchParams.get("productId");
+
     // TODO: handle loading process
-    const productId = 3;
     const product = getProductFromDatabase(productId);
     $("#product-name").html(product.ref);
     $("#product-description").html(product.description);
