@@ -631,5 +631,5 @@ import {
   })();
 })(jQuery);
 
-// TODO: create skeleton loading process
+// TODO: create skeleton loading process: https://www.freecodecamp.org/news/how-to-build-skeleton-screens-using-css-for-better-user-experience/
 // TODO: create & handle promise

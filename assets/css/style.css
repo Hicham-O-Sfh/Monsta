@@ -1470,10 +1470,11 @@ textarea:-ms-input-placeholder {
 
 .mini_cart {
   position: fixed;
+  background: url(https://static.elfsight.com/apps/all-in-one-chat/patterns/background-whatsapp.jpg)
+    center center / cover no-repeat;
   min-width: 355px;
   height: 100%;
   padding: 18px 20px 33px;
-  background: #fff;
   z-index: 999;
   right: 0;
   top: 0;
@@ -1506,11 +1507,10 @@ textarea:-ms-input-placeholder {
   width: 58%;
 }
 .cart_info a {
-  font-weight: 400;
+  font-weight: bold;
   color: #242424;
   text-transform: capitalize;
   font-size: 14px;
-  font-family: "Playfair Display", serif;
 }
 .cart_info a:hover {
   color: #c09578;
@@ -1550,11 +1550,14 @@ textarea:-ms-input-placeholder {
 .cart_total span {
   color: #242424;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: bold;
+}
+
+.cart_img img {
+  border-radius: 25px;
 }
 
 .cart_button a {
-  text-transform: uppercase;
   border-radius: 5px;
   font-weight: 400;
   color: #ffffff;
@@ -11957,4 +11960,24 @@ button[disabled] {
   cursor: not-allowed;
 }
 
+.whatsapp-button {
+  display: inline-block !important;
+  background-color: #25d366 !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+  padding: 10px 20px !important;
+  border-radius: 20px !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.whatsapp-button img {
+  vertical-align: middle !important;
+  margin-right: 10px !important;
+}
+
+.whatsapp-button span {
+  vertical-align: middle !important;
+}
 /*# sourceMappingURL=style.css.map */
