@@ -1,4 +1,4 @@
-export const MAIN_DATABASE = [
+export const MAIN_DATABASE = new Set([
   {
     id: 1,
     ref: "ref-produit-1",
@@ -77,8 +77,11 @@ export const MAIN_DATABASE = [
       },
     ],
   },
-];
+]);
 
 export function getProductFromDatabase(idProduct) {
-  return MAIN_DATABASE.filter((prod) => prod.id === idProduct)[0];
+  const productFromDB = Array.from(MAIN_DATABASE).find(
+    (prod) => prod.id === idProduct
+  );
+  return JSON.parse(JSON.stringify(productFromDB));
 }

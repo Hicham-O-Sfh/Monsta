@@ -1,13 +1,7 @@
-import { getProductFromDatabase } from "./database.management.js";
-
-Array.prototype.shiftOutAndDelete = function (predicate) {
-  var uniqueIterator;
-  for (uniqueIterator in this) {
-    if (predicate(this[uniqueIterator])) {
-      return this.splice(uniqueIterator, 1)[0];
-    }
-  }
-};
+import {
+  MAIN_DATABASE,
+  getProductFromDatabase,
+} from "./database.management.js";
 
 (function ($) {
   "use strict";
@@ -301,7 +295,6 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
   });
 
   /*---countdown activation---*/
-
   $("[data-countdown]").each(function () {
     var $this = $(this),
       finalDate = $(this).data("countdown");
@@ -551,14 +544,16 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
     $("#cart-items").empty("");
     Array.from(userCart).forEach((order) => {
       const mappedProductFromDb = getProductFromDatabase(order.productId);
+      const productMainPic = mappedProductFromDb.pics.shiftOutAndDelete(
+        (pic) => pic.isMain === true
+      ).smallPicUrl;
       subTotal += order.quantity * mappedProductFromDb.price;
-      $("#cart-items").html(
-        $("#cart-items").html() +
-          `
+      $("#cart-items").append(
+        `
         <div class="cart_item" id="${order.productId}">
           <div class="cart_img">
             <a href="#">
-              <img src="${mappedProductFromDb.pics[0].smallPicUrl}" alt=""/>
+              <img src="${productMainPic}" alt=""/>
             </a>
           </div>
           <div class="cart_info">
@@ -583,7 +578,7 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
   (function projectProductInPage() {
     // TODO: remove mocked product Id
     // TODO: handle loading process
-    const productId = 1;
+    const productId = 3;
     const product = getProductFromDatabase(productId);
     $("#product-name").html(product.ref);
     $("#product-description").html(product.description);
@@ -591,12 +586,11 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
 
     // product's pictures & zoom management
     const productMainPic = product.pics.shiftOutAndDelete(
-      (img) => img.isMain === true
+      (pic) => pic.isMain === true
     ).bigPicUrl;
     product.pics.forEach((pic) => {
-      $("#gallery_01").html(
-        $("#gallery_01").html() +
-          `
+      $("#gallery_01").append(
+        `
         <li>
           <a
             href="#"
