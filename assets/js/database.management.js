@@ -80,8 +80,14 @@ export const MAIN_DATABASE = new Set([
 ]);
 
 export function getProductFromDatabase(idProduct) {
-  const productFromDB = Array.from(MAIN_DATABASE).find(
-    (prod) => prod.id === idProduct
-  );
-  return JSON.parse(JSON.stringify(productFromDB));
+  return new Promise((resolve, reject) => {
+    try {
+      const productFromDB = Array.from(MAIN_DATABASE).find(
+        (prod) => prod.id === idProduct
+      );
+      resolve(JSON.parse(JSON.stringify(productFromDB)));
+    } catch (error) {
+      reject(error);
+    }
+  });
 }

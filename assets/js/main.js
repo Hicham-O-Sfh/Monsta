@@ -1,7 +1,4 @@
-import {
-  MAIN_DATABASE,
-  getProductFromDatabase,
-} from "./database.management.js";
+import { getProductFromDatabase } from "./database.management.js";
 
 (function ($) {
   "use strict";
@@ -550,36 +547,41 @@ import {
     $("#cart-quantity").html(userCart.length);
     $("#cart-items").empty("");
     Array.from(userCart).forEach((order) => {
-      const mappedProductFromDb = getProductFromDatabase(order.productId);
-      const productMainPic = mappedProductFromDb.pics.shiftOutAndDelete(
-        (pic) => pic.isMain === true
-      ).smallPicUrl;
-      subTotal += order.quantity * mappedProductFromDb.price;
-      $("#cart-items").append(
-        `
-        <div class="cart_item" id="${order.productId}">
-          <div class="cart_img">
-            <a href="#">
-              <img src="${productMainPic}" alt=""/>
-            </a>
-          </div>
-          <div class="cart_info">
-            <a href="#">${mappedProductFromDb.ref}</a>
-            <span class="quantity">quantité: ${order.quantity}</span>
-            <span class="price_cart">${mappedProductFromDb.price} Dhs</span>
-          </div>
-          <div class="cart_remove">
-            <a href="#">
-              <i class="ion-android-close remove-from-cart"></i>
-            </a>
-          </div>
-        </div>
-        `
-      );
-    });
+      getProductFromDatabase(order.productId)
+        .then((mappedProductFromDb) => {
+          const productMainPic = mappedProductFromDb.pics.shiftOutAndDelete(
+            (pic) => pic.isMain === true
+          ).smallPicUrl;
+          subTotal += order.quantity * mappedProductFromDb.price;
+          $("#cart-items").append(
+            `
+            <div class="cart_item" id="${order.productId}">
+              <div class="cart_img">
+                <a href="#">
+                  <img src="${productMainPic}" alt=""/>
+                </a>
+              </div>
+              <div class="cart_info">
+                <a href="#">${mappedProductFromDb.ref}</a>
+                <span class="quantity">quantité: ${order.quantity}</span>
+                <span class="price_cart">${mappedProductFromDb.price} Dhs</span>
+              </div>
+              <div class="cart_remove">
+                <a href="#">
+                  <i class="ion-android-close remove-from-cart"></i>
+                </a>
+              </div>
+            </div>
+          `
+          );
 
-    // calcul subtotal
-    $("#subtotal").html(`${subTotal} Dhs`);
+          // calcul subtotal
+          $("#subtotal").html(`${subTotal} Dhs`);
+        })
+        .catch((error) => {
+          alert("Erreur lors du chargement du panier", error);
+        });
+    });
   }
 
   (function projectProductInPage() {
@@ -587,38 +589,43 @@ import {
     const url = new URL(window.location.href);
     const productId = +url.searchParams.get("productId");
 
-    const product = getProductFromDatabase(productId);
-    $("#product-name").html(product.ref);
-    $("#product-description").html(product.description);
-    $("#product-price").html(`${product.price} Dhs`);
+    getProductFromDatabase(productId)
+      .then((product) => {
+        $("#product-name").html(product.ref);
+        $("#product-description").html(product.description);
+        $("#product-price").html(`${product.price} Dhs`);
 
-    // product's pictures & zoom management
-    const productMainPic = product.pics.shiftOutAndDelete(
-      (pic) => pic.isMain === true
-    ).bigPicUrl;
-    product.pics.forEach((pic) => {
-      $("#gallery_01").append(
-        `
-        <li>
-          <a
-            href="#"
-            class="elevatezoom-gallery active"
-            data-update=""
-            data-image="${pic.bigPicUrl}"
-            data-zoom-image="${pic.bigPicUrl}">
-            <img
-              src="${pic.smallPicUrl}"
-              alt="zo-th-1"/>
-          </a>
-        </li>
-        `
-      );
-    });
-    applyOwlCarousel();
+        // product's pictures & zoom management
+        const productMainPic = product.pics.shiftOutAndDelete(
+          (pic) => pic.isMain === true
+        ).bigPicUrl;
+        product.pics.forEach((pic) => {
+          $("#gallery_01").append(
+            `
+          <li>
+            <a
+              href="#"
+              class="elevatezoom-gallery active"
+              data-update=""
+              data-image="${pic.bigPicUrl}"
+              data-zoom-image="${pic.bigPicUrl}">
+              <img
+                src="${pic.smallPicUrl}"
+                alt="zo-th-1"/>
+            </a>
+          </li>
+          `
+          );
+        });
+        applyOwlCarousel();
 
-    $("#zoom1").prop("src", productMainPic);
-    $("#zoom1").data("zoom-image", productMainPic);
-    applyElevateZoom();
+        $("#zoom1").prop("src", productMainPic);
+        $("#zoom1").data("zoom-image", productMainPic);
+        applyElevateZoom();
+      })
+      .catch((error) => {
+        alert("Erreur lors du chargement du produit :", error);
+      });
   })();
 
   (function setMockCart() {
