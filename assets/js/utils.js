@@ -64,12 +64,12 @@ export function buildVisualCart() {
           `
           <div class="cart_item" id="${order.productId}">
             <div class="cart_img">
-              <a href="#">
+              <a href="/product-details.html?productId=${mappedProductFromDb.id}">
                 <img src="${productMainPic}" alt=""/>
               </a>
             </div>
             <div class="cart_info">
-              <a href="#">${mappedProductFromDb.ref}</a>
+              <a href="/product-details.html?productId=${mappedProductFromDb.id}">${mappedProductFromDb.ref}</a>
               <span class="quantity">quantité: ${order.quantity}</span>
               <span class="price_cart">${mappedProductFromDb.price} Dhs</span>
             </div>
