@@ -533,6 +533,7 @@ import {
         $("#product-name").html(product.ref);
         $("#product-price").html(`${product.price} Dhs`);
         $("#product-description").html(product.description);
+        $("#second-product-description").html(product.secondDescription);
 
         // product's pictures & zoom management
         const productMainPic = product.pics.shiftOutAndDelete(
