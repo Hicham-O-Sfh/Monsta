@@ -1,4 +1,12 @@
 import { getProductFromDatabase } from "./database.management.js";
+import {
+  addOrderToCart,
+  buildVisualCart,
+  getCurrentDisplayedProductId,
+  isValidNumberInputValue,
+  retrieveUserCartFromLocalStorage,
+  saveCartInLocalStorage,
+} from "./utils.js";
 
 (function ($) {
   "use strict";
@@ -480,10 +488,9 @@ import { getProductFromDatabase } from "./database.management.js";
 
   // Cart management
   $("#button-add-to-cart").click(function () {
-    var productId = $(this).data("id");
-    var quantity = +$("#product-quantity").val();
-
-    var orderToAdd = {
+    const productId = getCurrentDisplayedProductId();
+    const quantity = +$("#product-quantity").val();
+    const orderToAdd = {
       productId: productId,
       quantity: quantity,
     };
@@ -517,77 +524,9 @@ import { getProductFromDatabase } from "./database.management.js";
     buildVisualCart();
   });
 
-  function addOrderToCart(orderToAdd) {
-    var userCart = retrieveUserCartFromLocalStorage();
-    var relatedOrderFromCart = userCart.find(
-      (order) => order.productId === orderToAdd.productId
-    );
-    if (relatedOrderFromCart) {
-      relatedOrderFromCart.quantity += +orderToAdd.quantity;
-    } else {
-      userCart.push(orderToAdd);
-    }
-    saveCartInLocalStorage(userCart);
-  }
-
-  /**
-   * retrieves userCart from local storage
-   * and convert it to array
-   * @returns array of cart items: userCart
-   */
-  function retrieveUserCartFromLocalStorage() {
-    var rawUserCart = localStorage.getItem("panier");
-    var userCart = JSON.parse(rawUserCart);
-    return Array.from(userCart);
-  }
-
-  function buildVisualCart() {
-    var userCart = retrieveUserCartFromLocalStorage();
-    var subTotal = 0;
-    $("#cart-quantity").html(userCart.length);
-    $("#cart-items").empty("");
-    Array.from(userCart).forEach((order) => {
-      getProductFromDatabase(order.productId)
-        .then((mappedProductFromDb) => {
-          const productMainPic = mappedProductFromDb.pics.shiftOutAndDelete(
-            (pic) => pic.isMain === true
-          ).smallPicUrl;
-          subTotal += order.quantity * mappedProductFromDb.price;
-          $("#cart-items").append(
-            `
-            <div class="cart_item" id="${order.productId}">
-              <div class="cart_img">
-                <a href="#">
-                  <img src="${productMainPic}" alt=""/>
-                </a>
-              </div>
-              <div class="cart_info">
-                <a href="#">${mappedProductFromDb.ref}</a>
-                <span class="quantity">quantité: ${order.quantity}</span>
-                <span class="price_cart">${mappedProductFromDb.price} Dhs</span>
-              </div>
-              <div class="cart_remove">
-                <a href="#">
-                  <i class="ion-android-close remove-from-cart"></i>
-                </a>
-              </div>
-            </div>
-          `
-          );
-
-          // calcul subtotal
-          $("#subtotal").html(`${subTotal} Dhs`);
-        })
-        .catch((error) => {
-          alert("Erreur lors du chargement du panier", error);
-        });
-    });
-  }
-
   (function projectProductInPage() {
     // get productId from query string
-    const url = new URL(window.location.href);
-    const productId = +url.searchParams.get("productId");
+    const productId = getCurrentDisplayedProductId();
 
     getProductFromDatabase(productId)
       .then((product) => {
