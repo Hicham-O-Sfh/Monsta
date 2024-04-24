@@ -183,9 +183,12 @@
         <div class="row">
           <div class="col-lg-6 col-md-6">
             <div class="product-details-tab">
-              <div id="img-1" class="zoomWrapper single-zoom">
+              <div
+                id="img-1"
+                class="zoomWrapper single-zoom big-image-skeleton"
+              >
                 <a href="#">
-                  <img id="zoom1" src="" data-zoom-image="" alt="big-1" />
+                  <img id="zoom1" src="" data-zoom-image="" alt="" />
                 </a>
               </div>
 
@@ -199,12 +202,20 @@
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="product_d_right">
-              <h1 id="product-name"></h1>
+              <h1 id="product-name" class="text-skeleton">Lorem, ipsum.</h1>
               <div class="product_price">
-                <span class="current_price" id="product-price"></span>
+                <span class="current_price text-skeleton" id="product-price">
+                  123 Dhs
+                </span>
               </div>
               <div class="product_desc">
-                <p id="product-description"></p>
+                <p id="product-description" class="text-skeleton">
+                  AAp1eget velit. Donec ac tempus ante. Fusce ultricies massa
+                  massa. Fusce aliquam, purus eget sagittis vulputate, sapien
+                  libero hendrerit est, sed commodo augue nisi non neque. Lorem
+                  ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor,
+                  lorem et placerat vestibulum, metus nisi posuere nisl, in
+                </p>
               </div>
 
               <div class="product_variant quantity">
@@ -217,7 +228,7 @@
                   value="1"
                   type="number"
                 />
-                <button class="button" id="button-add-to-cart">
+                <button class="button text-skeleton" id="button-add-to-cart">
                   Ajouter au panier !
                 </button>
               </div>

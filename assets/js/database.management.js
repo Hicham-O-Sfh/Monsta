@@ -46,8 +46,8 @@ export const MAIN_DATABASE = new Set([
         smallPicUrl: "assets/img/product/product4.jpg",
       },
       {
-        bigPicUrl: "assets/img/product/product1-big.jpg",
-        smallPicUrl: "assets/img/product/product13.jpg",
+        bigPicUrl: "assets/img/product/product2-big.jpg",
+        smallPicUrl: "assets/img/product/product2.jpg",
       },
     ],
   },
@@ -72,8 +72,8 @@ export const MAIN_DATABASE = new Set([
         isMain: true,
       },
       {
-        bigPicUrl: "assets/img/product/product1-big.jpg",
-        smallPicUrl: "assets/img/product/product13.jpg",
+        bigPicUrl: "assets/img/product/product3-big.jpg",
+        smallPicUrl: "assets/img/product/product4.jpg",
       },
     ],
   },

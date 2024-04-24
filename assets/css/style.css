@@ -12019,4 +12019,25 @@ button[disabled] {
 .whatsapp-button span {
   vertical-align: middle !important;
 }
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+.big-image-skeleton {
+  animation: skeleton-loading 0.2s linear infinite alternate;
+  height: 450px;
+}
+
+.text-skeleton {
+  animation: skeleton-loading 0.2s linear infinite alternate;
+  color: transparent !important;
+  pointer-events: none;
+}
+
 /*# sourceMappingURL=style.css.map */

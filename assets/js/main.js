@@ -531,8 +531,8 @@ import {
     getProductFromDatabase(productId)
       .then((product) => {
         $("#product-name").html(product.ref);
-        $("#product-description").html(product.description);
         $("#product-price").html(`${product.price} Dhs`);
+        $("#product-description").html(product.description);
 
         // product's pictures & zoom management
         const productMainPic = product.pics.shiftOutAndDelete(
@@ -561,6 +561,10 @@ import {
         $("#zoom1").prop("src", productMainPic);
         $("#zoom1").data("zoom-image", productMainPic);
         applyElevateZoom();
+
+        // disable the skeleton loader
+        $(".big-image-skeleton").removeClass("big-image-skeleton");
+        $(".text-skeleton").removeClass("text-skeleton");
       })
       .catch((error) => {
         alert("Erreur lors du chargement du produit :", error);
@@ -576,6 +580,3 @@ import {
     buildVisualCart();
   })();
 })(jQuery);
-
-// TODO: create skeleton loading process: https://www.freecodecamp.org/news/how-to-build-skeleton-screens-using-css-for-better-user-experience/
-// TODO: create & handle promise
