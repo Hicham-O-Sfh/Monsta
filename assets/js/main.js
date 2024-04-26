@@ -524,6 +524,55 @@ import {
     buildVisualCart();
   });
 
+  (function projectWidgetsInPage() {
+    // todo : fetch 2 product to show as "best selling products"
+    // todo : add something alse in the footer ??  
+    $("#footer-best-selling-products").html(`
+        <h3>Produits les plus vendus</h3>
+        <div class="simple_product">
+          <div class="simple_product_items">
+            <div class="simple_product_thumb">
+              <a href="#"
+                ><img src="assets/img/s-product/product5.jpg" alt=""
+              /></a>
+            </div>
+            <div class="simple_product_content">
+              <div class="tag_cate">
+                <a href="#">Clothing,</a>
+                <a href="#">Potato chips</a>
+              </div>
+              <div class="product_name">
+                <h3><a href="#">Donec eu animal</a></h3>
+              </div>
+              <div class="product_price">
+                <span class="old_price">$86.00</span>
+                <span class="current_price">$70.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="simple_product_items">
+            <div class="simple_product_thumb">
+              <a href="#"
+                ><img src="assets/img/s-product/product6.jpg" alt=""
+              /></a>
+            </div>
+            <div class="simple_product_content">
+              <div class="tag_cate">
+                <a href="#">Women</a>
+              </div>
+              <div class="product_name">
+                <h3><a href="#">Dummy animal</a></h3>
+              </div>
+              <div class="product_price">
+                <span class="old_price">$74.00</span>
+                <span class="current_price">$69.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+    `);
+  })();
+
   (function projectProductInPage() {
     // get productId from query string
     const productId = getCurrentDisplayedProductId();

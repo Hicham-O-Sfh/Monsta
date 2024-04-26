@@ -5582,8 +5582,6 @@ textarea:-ms-input-placeholder {
 }
 
 .p_section1 .slick-list {
-  padding-bottom: 135px !important;
-  margin-bottom: -135px;
   z-index: 9;
   padding-top: 18px !important;
   margin-top: -30px;
@@ -12039,4 +12037,12 @@ button[disabled] {
   pointer-events: none;
 }
 
+.brand-lil-bling-title {
+  font-family: "Rubik", sans-serif !important;
+}
+
+.lil-bling-copyright-logo {
+  font-size: 9px;
+  font-weight: 200;
+}
 /*# sourceMappingURL=style.css.map */
