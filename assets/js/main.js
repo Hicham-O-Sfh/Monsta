@@ -1,4 +1,5 @@
 import {
+  getAllProductsFromDatabase,
   getProductFromDatabase,
 } from "./database.management.js";
 import {
@@ -93,46 +94,48 @@ import {
   });
 
   /*---product row activation---*/
-  $(".product_row1").slick({
-    centerMode: true,
-    centerPadding: "0",
-    slidesToShow: 5,
-    arrows: true,
-    prevArrow:
-      '<button class="prev_arrow"><i class="fa fa-angle-left"></i></button>',
-    nextArrow:
-      '<button class="next_arrow"><i class="fa fa-angle-right"></i></button>',
-    responsive: [
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+  function activeteSlickForSectionRelatedProducts() {
+    $(".product_row1").slick({
+      centerMode: true,
+      centerPadding: "0",
+      slidesToShow: 5,
+      arrows: true,
+      prevArrow:
+        '<button class="prev_arrow"><i class="fa fa-angle-left"></i></button>',
+      nextArrow:
+        '<button class="next_arrow"><i class="fa fa-angle-right"></i></button>',
+      responsive: [
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
         },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+          },
         },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          },
         },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4,
+          },
         },
-      },
-    ],
-  });
+      ],
+    });
+  }
 
   /*---product row 2 activation---*/
   $(".product_row2").slick({
@@ -627,115 +630,53 @@ import {
       });
   })();
 
-  // (function projectRelatedProductsInPage() {
-  //   getAllProductsFromDatabase()
-  //     .then((products) => {
-  //       $("#related-products-section").empty();
-  //       products.forEach((prod) => {
-  //         $("#related-products-section").append(
-  //           `
-  //           <div class="custom-col-5">
-  //             <div class="single_product">
-  //               <div class="product_thumb">
-  //                 <a class="primary_img" href="product-details.html"
-  //                   ><img src="assets/img/product/product13.jpg" alt=""
-  //                 /></a>
-  //                 <a class="secondary_img" href="product-details.html"
-  //                   ><img src="assets/img/product/product14.jpg" alt=""
-  //                 /></a>
-  //                 <div class="quick_button">
-  //                   <a
-  //                     href="#"
-  //                     data-bs-toggle="modal"
-  //                     data-bs-target="#modal_box"
-  //                     data-placement="top"
-  //                     data-original-title="quick view"
-  //                   >
-  //                     quick view</a
-  //                   >
-  //                 </div>
-  //               </div>
-  //               <div class="product_content">
-  //                 <div class="tag_cate">
-  //                   <a href="#">Clothing,</a>
-  //                   <a href="#">Potato chips</a>
-  //                 </div>
-  //                 <h3>
-  //                   <a href="product-details.html">Aliquam furniture</a>
-  //                 </h3>
-  //                 <span class="old_price">$86.00</span>
-  //                 <span class="current_price">$60.00</span>
-  //                 <div class="product_hover">
-  //                   <div class="product_ratings">
-  //                     <ul>
-  //                       <li>
-  //                         <a href="#"
-  //                           ><i class="ion-ios-star-outline"></i
-  //                         ></a>
-  //                       </li>
-  //                       <li>
-  //                         <a href="#"
-  //                           ><i class="ion-ios-star-outline"></i
-  //                         ></a>
-  //                       </li>
-  //                       <li>
-  //                         <a href="#"
-  //                           ><i class="ion-ios-star-outline"></i
-  //                         ></a>
-  //                       </li>
-  //                       <li>
-  //                         <a href="#"
-  //                           ><i class="ion-ios-star-outline"></i
-  //                         ></a>
-  //                       </li>
-  //                       <li>
-  //                         <a href="#"
-  //                           ><i class="ion-ios-star-outline"></i
-  //                         ></a>
-  //                       </li>
-  //                     </ul>
-  //                   </div>
-  //                   <div class="product_desc">
-  //                     <p>
-  //                       Lorem ipsum dolor sit amet, consectetur adipiscing
-  //                       elit. Fusce posuere metus vitae
-  //                     </p>
-  //                   </div>
-  //                   <div class="action_links">
-  //                     <ul>
-  //                       <li>
-  //                         <a
-  //                           href="wishlist.html"
-  //                           data-placement="top"
-  //                           title="Add to Wishlist"
-  //                           data-bs-toggle="tooltip"
-  //                           ><span class="icon icon-Heart"></span
-  //                         ></a>
-  //                       </li>
-  //                       <li class="add_to_cart">
-  //                         <a href="cart.html" title="add to cart"
-  //                           >add to cart</a
-  //                         >
-  //                       </li>
-  //                       <li>
-  //                         <a href="compare.html" title="compare"
-  //                           ><i class="ion-ios-settings-strong"></i
-  //                         ></a>
-  //                       </li>
-  //                     </ul>
-  //                   </div>
-  //                 </div>
-  //               </div>
-  //             </div>
-  //           </div>
-  //           `
-  //         );
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // });
+  (function projectRelatedProductsInPage() {
+    getAllProductsFromDatabase(12)
+      .then((products) => {
+        products = [
+          ...JSON.parse(JSON.stringify(products)),
+          ...JSON.parse(JSON.stringify(products)),
+          ...JSON.parse(JSON.stringify(products)),
+          ...JSON.parse(JSON.stringify(products)),
+        ];
+        $("#related-products-section").empty();
+        products.forEach((prod) => {
+          $("#related-products-section").append(
+            `
+            <div class="custom-col-5">
+              <div class="single_product">
+                <div class="product_thumb">
+                  <a 
+                    class="primary_img" 
+                    href="/product-details.html?productId=${prod.id}">
+                    <img 
+                      src="${
+                        prod.pics.shiftOutAndDelete(
+                          (pic) => pic.isMain === true
+                        ).bigPicUrl
+                      }" alt="" />
+                  </a>
+                </div>
+                <div class="product_content">
+                  <h3>
+                    <a href="/product-details.html?productId=${prod.id}">
+                      ${prod.ref}
+                    </a>
+                  </h3>
+                  <span class="current_price">${prod.price} Dhs</span>
+                </div>
+              </div>
+            </div>
+            `
+          );
+        });
+        $(".product_section").removeClass("d-none");
+        activeteSlickForSectionRelatedProducts();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  })();
 
   (function setMockCart() {
     var cart = [
