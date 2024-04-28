@@ -5588,11 +5588,6 @@ textarea:-ms-input-placeholder {
   position: relative;
 }
 
-.p_bottom.p_section1 .slick-list {
-  padding-bottom: 120px !important;
-  margin-bottom: -120px;
-}
-
 .product_container.bottom button {
   display: block !important;
   position: absolute;
@@ -5649,7 +5644,6 @@ textarea:-ms-input-placeholder {
 
 .product_section.p_bottom {
   margin-bottom: 68px;
-  border-bottom: 1px solid #ebebeb;
   padding-bottom: 39px;
 }
 .product_section.p_bottom .section_title {
