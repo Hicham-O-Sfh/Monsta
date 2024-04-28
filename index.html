@@ -89,63 +89,41 @@
                   <a href="#">
                     <i class="ion-android-cart"></i>
                   </a>
-                  <span class="cart_quantity">2</span>
+                  <span class="cart_quantity" id="cart-quantity">0</span>
                   <!--mini cart-->
                   <div class="mini_cart">
                     <div class="cart_close">
                       <div class="cart_text">
-                        <h3>cart</h3>
+                        <h3>Mon panier</h3>
                       </div>
                       <div class="mini_cart_close">
-                        <a href="javascript:void(0)"
-                          ><i class="ion-android-close"></i
-                        ></a>
+                        <a href="javascript:void(0)">
+                          <i class="ion-android-close"></i>
+                        </a>
                       </div>
                     </div>
-                    <div class="cart_item" id="111">
-                      <div class="cart_img">
-                        <a href="#"
-                          ><img src="assets/img/s-product/product.jpg" alt=""
-                        /></a>
-                      </div>
-                      <div class="cart_info">
-                        <a href="#">Letraset animal</a>
-
-                        <span class="quantity">Qty: 1</span>
-                        <span class="price_cart">$60.00</span>
-                      </div>
-                      <div class="cart_remove">
-                        <a href="#"
-                          ><i class="ion-android-close remove-from-cart"></i
-                        ></a>
-                      </div>
-                    </div>
-                    <div class="cart_item" id="112">
-                      <div class="cart_img">
-                        <a href="#"
-                          ><img src="assets/img/s-product/product2.jpg" alt=""
-                        /></a>
-                      </div>
-                      <div class="cart_info">
-                        <a href="#">Natural passages</a>
-                        <span class="quantity">Qty: 1</span>
-                        <span class="price_cart">$69.00</span>
-                      </div>
-                      <div class="cart_remove">
-                        <a href="#"
-                          ><i class="ion-android-close remove-from-cart"></i
-                        ></a>
-                      </div>
-                    </div>
+                    <div id="cart-items"></div>
                     <div class="cart_total">
-                      <span>Subtotal:</span>
-                      <span>138.00</span>
+                      <span>Totale:</span>
+                      <u>
+                        <span id="subtotal">0 Dhs</span>
+                      </u>
                     </div>
                     <div class="mini_cart_footer">
                       <div class="cart_button checkout">
-                        <a class="active" href="checkout.html"
-                          >💖 Commander 💖</a
+                        <a
+                          href="https://wa.me/2120666201740?text=CeciEstUnTest"
+                          class="whatsapp-button"
+                          target="_blank"
                         >
+                          <img
+                            height="40"
+                            width="40"
+                            src="WhatsAppLogoWhite.svg"
+                            alt="WhatsApp"
+                          />
+                          <span>Valider la commande !</span>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -159,7 +137,7 @@
       <!--header middel end-->
 
       <!--header bottom satrt-->
-      <div class="header_bottom sticky-header">
+      <div class="sticky-header">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-12">
@@ -3882,7 +3860,9 @@
                 <p>Tentez de gagner un cadeau dans votre commande 🎁</p>
                 <h2>🌻 Nouvelle collection tendance 💎</h2>
                 <span>
-                  Profitez des derniéres nouveautés élégante et à la mode !
+                  Profitez des derniéres nouveautés
+                  <br />
+                  élégance et à la mode !
                 </span>
               </div>
             </a>
