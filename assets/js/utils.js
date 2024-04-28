@@ -91,16 +91,6 @@ export function applyElevateZoom() {
   });
 }
 
-// generic & custom addons for app
-Array.prototype.shiftOutAndDelete = function (predicate) {
-  var uniqueIterator;
-  for (uniqueIterator in this) {
-    if (predicate(this[uniqueIterator])) {
-      return this.splice(uniqueIterator, 1)[0];
-    }
-  }
-};
-
 export function isValidNumberInputValue(value) {
   return !isNaN(value) && parseInt(value) > 0;
 }

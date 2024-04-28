@@ -10,6 +10,16 @@ import {
   saveCartInLocalStorage,
 } from "./utils.js";
 
+// generic & custom addons for app
+Array.prototype.shiftOutAndDelete = function (predicate) {
+  var uniqueIterator;
+  for (uniqueIterator in this) {
+    if (predicate(this[uniqueIterator])) {
+      return this.splice(uniqueIterator, 1)[0];
+    }
+  }
+};
+
 (function ($) {
   "use strict";
 
