@@ -6533,7 +6533,6 @@ textarea:-ms-input-placeholder {
   display: flex;
   padding-bottom: 10px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ebebeb;
 }
 .simple_product_items:last-child {
   padding-bottom: 0;
@@ -6670,9 +6669,6 @@ textarea:-ms-input-placeholder {
 }
 .footer_black .simple_product_content .product_price span.current_price {
   color: #a8741a;
-}
-.footer_black .simple_product_items {
-  border-bottom: 1px solid #2d2d2d;
 }
 .footer_black .simple_product_items:last-child {
   border-bottom: 0;

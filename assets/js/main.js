@@ -530,18 +530,8 @@ import {
   });
 
   (function projectBestSellingProductsInFooter() {
-    /**
-     * todo :
-     * add links to
-     * "FAQ",
-     * "Our Services",
-     * "Contact us",
-     * "Catalogue"
-     * Instagram & Tik Tok
-     * to the footer
-     */
     $("#footer-best-selling-products").html(`
-      <h3>Produits les plus vendus</h3>
+      <h3>✅ Produits les plus vendus</h3>
     `);
     const bestSellingProductsIds = [1, 2];
     bestSellingProductsIds.forEach((productId) => {
@@ -634,7 +624,6 @@ import {
     getAllProductsFromDatabase(12)
       .then((products) => {
         products = [
-          ...JSON.parse(JSON.stringify(products)),
           ...JSON.parse(JSON.stringify(products)),
           ...JSON.parse(JSON.stringify(products)),
           ...JSON.parse(JSON.stringify(products)),
