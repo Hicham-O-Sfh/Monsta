@@ -1,12 +1,11 @@
 import {
-  getAllProductsFromDatabase,
-  getProductFromDatabase,
-} from "./database.management.js";
-import {
   addOrderToCart,
   buildVisualCart,
   getCurrentDisplayedProductId,
   isValidNumberInputValue,
+  projectBestSellingProductsInFooter,
+  projectProductInPage,
+  projectRelatedProductsInPage,
   retrieveUserCartFromLocalStorage,
   saveCartInLocalStorage,
 } from "./utils.js";
@@ -93,50 +92,6 @@ import {
     ],
   });
 
-  /*---product row activation---*/
-  function activeteSlickForSectionRelatedProducts() {
-    $(".product_row1").slick({
-      centerMode: true,
-      centerPadding: "0",
-      slidesToShow: 5,
-      arrows: true,
-      prevArrow:
-        '<button class="prev_arrow"><i class="fa fa-angle-left"></i></button>',
-      nextArrow:
-        '<button class="next_arrow"><i class="fa fa-angle-right"></i></button>',
-      responsive: [
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-          },
-        },
-        {
-          breakpoint: 992,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-          },
-        },
-        {
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 4,
-          },
-        },
-      ],
-    });
-  }
-
   /*---product row 2 activation---*/
   $(".product_row2").slick({
     centerMode: true,
@@ -221,37 +176,6 @@ import {
       '<i class="fa fa-angle-right"></i>',
     ],
   });
-
-  /*---single product activation---*/
-  function applyOwlCarousel() {
-    $(".single-product-active").owlCarousel({
-      autoplay: false,
-      loop: true,
-      nav: true,
-      items: 4,
-      margin: 15,
-      dots: false,
-      navText: [
-        '<i class="fa fa-angle-left"></i>',
-        '<i class="fa fa-angle-right"></i>',
-      ],
-      responsiveClass: true,
-      responsive: {
-        0: {
-          items: 1,
-        },
-        320: {
-          items: 2,
-        },
-        992: {
-          items: 3,
-        },
-        1200: {
-          items: 4,
-        },
-      },
-    });
-  }
 
   /*---testimonial active activation---*/
   $(".testimonial_active").owlCarousel({
@@ -357,16 +281,6 @@ import {
 
   /*niceSelect*/
   $(".niceselect_option").niceSelect();
-
-  /*---elevateZoom---*/
-  function applyElevateZoom() {
-    $("#zoom1").elevateZoom({
-      gallery: "gallery_01",
-      responsive: true,
-      cursor: "crosshair",
-      zoomType: "inner",
-    });
-  }
 
   /*---portfolio Isotope activation---*/
   $(".portfolio_gallery").imagesLoaded(function () {
@@ -491,188 +405,80 @@ import {
     perturbance: 0.04,
   });
 
-  // Cart management
-  $("#button-add-to-cart").click(function () {
-    const productId = getCurrentDisplayedProductId();
-    const quantity = +$("#product-quantity").val();
-    const orderToAdd = {
-      productId: productId,
-      quantity: quantity,
-    };
-
-    addOrderToCart(orderToAdd);
-
-    // update the cart display on DOM
-    buildVisualCart();
-  });
-
-  $("#product-quantity").on("input", function () {
-    $("#button-add-to-cart").prop(
-      "disabled",
-      !isValidNumberInputValue($(this).val())
-    );
-  });
-
-  $("body").on("click", ".ion-android-close.remove-from-cart", function () {
-    // get cart item from client storage
-    var userCart = retrieveUserCartFromLocalStorage();
-    // get cart item from DOM
-    var cartItemToDelete = $(this).parent().closest(".cart_item").get(0);
-
-    // remove cart item from client storage
-    userCart = userCart.filter(
-      (order) => order.productId != cartItemToDelete.id
-    );
-    saveCartInLocalStorage(userCart);
-
-    // remove & update the cart in the DOM
-    buildVisualCart();
-  });
-
-  (function projectBestSellingProductsInFooter() {
-    $("#footer-best-selling-products").html(`
-      <h3>✅ Produits les plus vendus</h3>
-    `);
-    const bestSellingProductsIds = [1, 2];
-    bestSellingProductsIds.forEach((productId) => {
-      getProductFromDatabase(productId)
-        .then((product) => {
-          $("#footer-best-selling-products").append(
-            `
-            <div class="simple_product_items">
-              <div class="simple_product_thumb">
-                <a href="/product-details.html?productId=${product.id}">
-                  <img 
-                  src="${
-                    product.pics.shiftOutAndDelete((pic) => pic.isMain === true)
-                      .bigPicUrl
-                  }" 
-                  alt=""/>
-                </a>
-              </div>
-              <div class="simple_product_content">
-                <div class="product_name">
-                  <h3>
-                    <a href="/product-details.html?productId=${product.id}">
-                      ${product.ref}
-                    </a>
-                  </h3>
-                </div>
-                <div class="product_price">
-                  <span class="current_price">${product.price} Dhs</span>
-                </div>
-              </div>
-            </div>
-            `
-          );
-        })
-        .catch((error) =>
-          console.log("Error while fetching best selling products", error)
-        );
+  function productDetailsPageEvents() {
+    // quantity input validation
+    $("#product-quantity").on("input", function () {
+      $("#button-add-to-cart").prop(
+        "disabled",
+        !isValidNumberInputValue($(this).val())
+      );
     });
-  })();
 
-  (function projectProductInPage() {
-    // get productId from query string
-    const productId = getCurrentDisplayedProductId();
+    // Add to cart
+    $("#button-add-to-cart").click(function () {
+      const productId = getCurrentDisplayedProductId();
+      const quantity = +$("#product-quantity").val();
+      const orderToAdd = {
+        productId: productId,
+        quantity: quantity,
+      };
 
-    getProductFromDatabase(productId)
-      .then((product) => {
-        $("#product-name").html(product.ref);
-        $("#product-price").html(`${product.price} Dhs`);
-        $("#product-description").html(product.description);
-        $("#second-product-description").html(product.secondDescription);
+      addOrderToCart(orderToAdd);
 
-        // product's pictures & zoom management
-        const productMainPic = product.pics.shiftOutAndDelete(
-          (pic) => pic.isMain === true
-        ).bigPicUrl;
-        product.pics.forEach((pic) => {
-          $("#gallery_01").append(
-            `
-          <li>
-            <a
-              href="#"
-              class="elevatezoom-gallery active"
-              data-update=""
-              data-image="${pic.bigPicUrl}"
-              data-zoom-image="${pic.bigPicUrl}">
-              <img
-                src="${pic.smallPicUrl}"
-                alt="zo-th-1"/>
-            </a>
-          </li>
-          `
-          );
-        });
-        applyOwlCarousel();
+      // update the cart display on DOM
+      buildVisualCart();
+    });
+  }
 
-        $("#zoom1").prop("src", productMainPic);
-        $("#zoom1").data("zoom-image", productMainPic);
-        applyElevateZoom();
+  $(document).ready(function () {
+    const currentPage = new URL(window.location.href);
 
-        // disable the skeleton loader
-        $(".big-image-skeleton").removeClass("big-image-skeleton");
-        $(".text-skeleton").removeClass("text-skeleton");
-      })
-      .catch((error) => {
-        alert("Erreur lors du chargement du produit :", error);
-      });
-  })();
+    // all pages
+    buildVisualCart();
+    projectBestSellingProductsInFooter();
 
-  (function projectRelatedProductsInPage() {
-    getAllProductsFromDatabase(12)
-      .then((products) => {
-        products = [
-          ...JSON.parse(JSON.stringify(products)),
-          ...JSON.parse(JSON.stringify(products)),
-          ...JSON.parse(JSON.stringify(products)),
-        ];
-        $("#related-products-section").empty();
-        products.forEach((prod) => {
-          $("#related-products-section").append(
-            `
-            <div class="custom-col-5">
-              <div class="single_product">
-                <div class="product_thumb">
-                  <a 
-                    class="primary_img" 
-                    href="/product-details.html?productId=${prod.id}">
-                    <img 
-                      src="${
-                        prod.pics.shiftOutAndDelete(
-                          (pic) => pic.isMain === true
-                        ).bigPicUrl
-                      }" alt="" />
-                  </a>
-                </div>
-                <div class="product_content">
-                  <h3>
-                    <a href="/product-details.html?productId=${prod.id}">
-                      ${prod.ref}
-                    </a>
-                  </h3>
-                  <span class="current_price">${prod.price} Dhs</span>
-                </div>
-              </div>
-            </div>
-            `
-          );
-        });
-        $(".product_section").removeClass("d-none");
-        activeteSlickForSectionRelatedProducts();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  })();
+    // product-details
+    if (currentPage.pathname.includes("product-details.html")) {
+      productDetailsPageEvents();
+      projectProductInPage();
+    }
 
-  (function setMockCart() {
+    // home and product-details
+    if (
+      currentPage.pathname.includes("product-details.html") ||
+      currentPage.pathname.includes("index.html")
+    ) {
+      projectRelatedProductsInPage();
+    }
+  });
+
+  (function initMockCart() {
+    // todo: to remove later
     var cart = [
       { productId: 1, quantity: 10 },
       { productId: 2, quantity: 20 },
     ];
     saveCartInLocalStorage(cart);
+
+    // Build visual cart display on page init
     buildVisualCart();
+
+    // Bind automatically removeFromCart event
+    // in all existing & new added related elements
+    $("body").on("click", ".ion-android-close.remove-from-cart", function () {
+      // get cart item from client storage
+      var userCart = retrieveUserCartFromLocalStorage();
+      // get cart item from DOM
+      var cartItemToDelete = $(this).parent().closest(".cart_item").get(0);
+
+      // remove cart item from client storage
+      userCart = userCart.filter(
+        (order) => order.productId != cartItemToDelete.id
+      );
+      saveCartInLocalStorage(userCart);
+
+      // remove & update the cart in the DOM
+      buildVisualCart();
+    });
   })();
 })(jQuery);
