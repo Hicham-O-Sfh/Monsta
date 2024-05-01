@@ -50,6 +50,50 @@ export function applySlickForSectionRelatedProducts() {
   });
 }
 
+export function applySlickForSectionHomeTabs(homeProductsTab) {
+  $(homeProductsTab).slick({
+    centerMode: true,
+    centerPadding: "0",
+    slidesToShow: 5,
+    arrows: true,
+    rows: 2,
+    prevArrow:
+      '<button class="prev_arrow"><i class="fa fa-angle-left"></i></button>',
+    nextArrow:
+      '<button class="next_arrow"><i class="fa fa-angle-right"></i></button>',
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        },
+      },
+    ],
+  });
+}
+
 // OwlCarousel
 export function applyOwlCarousel() {
   $(".single-product-active").owlCarousel({
@@ -310,4 +354,138 @@ export function projectBestSellingProductsInFooter() {
         console.log("Error while fetching best selling products", error)
       );
   });
+}
+
+export function projectProductsInHomeTabs() {
+  // fill featured products tab
+  getAllProductsFromDatabase(12)
+    .then((products) => {
+      // todo : to remove when there's more than 12 products in DB *****************//
+      products = [
+        ...JSON.parse(JSON.stringify(products)),
+        ...JSON.parse(JSON.stringify(products)),
+      ];
+      //*****************************************************************************/
+      const $featuredProductsTab = $("#featured-products-tab");
+      $featuredProductsTab.empty();
+      products.forEach((prod) => {
+        $featuredProductsTab.append(
+          `
+          <div class="custom-col-5">
+            <div class="single_product">
+              <div class="product_thumb">
+                <a 
+                  class="primary_img" 
+                  href="/product-details.html?productId=${prod.id}">
+                  <img 
+                    src="${
+                      prod.pics.shiftOutAndDelete((pic) => pic.isMain === true)
+                        .bigPicUrl
+                    }" alt="" />
+                </a>
+              </div>
+              <div class="product_content">
+                <h3>
+                  <a href="/product-details.html?productId=${prod.id}">
+                    ${prod.ref}
+                  </a>
+                </h3>
+                <span class="current_price">${prod.price} Dhs</span>
+              </div>
+            </div>
+          </div>
+        `
+        );
+      });
+      applySlickForSectionHomeTabs($featuredProductsTab);
+    })
+    .catch((error) => console.log(error));
+
+  // fill arrivals products tab
+  getAllProductsFromDatabase(12)
+    .then((products) => {
+      // todo : to remove when there's more than 12 products in DB *****************//
+      products = [
+        ...JSON.parse(JSON.stringify(products)),
+        ...JSON.parse(JSON.stringify(products)),
+      ];
+      //*****************************************************************************/
+      const $arrivalsProductsTab = $("#arrivals-products-tab");
+      $arrivalsProductsTab.empty();
+      products.forEach((prod) => {
+        $arrivalsProductsTab.append(
+          `
+          <div class="custom-col-5">
+            <div class="single_product">
+              <div class="product_thumb">
+                <a
+                  class="primary_img"
+                  href="/product-details.html?productId=${prod.id}">
+                  <img
+                    src="${
+                      prod.pics.shiftOutAndDelete((pic) => pic.isMain === true)
+                        .bigPicUrl
+                    }" alt="" />
+                </a>
+              </div>
+              <div class="product_content">
+                <h3>
+                  <a href="/product-details.html?productId=${prod.id}">
+                    ${prod.ref}
+                  </a>
+                </h3>
+                <span class="current_price">${prod.price} Dhs</span>
+              </div>
+            </div>
+          </div>
+        `
+        );
+      });
+      applySlickForSectionHomeTabs($arrivalsProductsTab);
+    })
+    .catch((error) => console.log(error));
+
+  // fill onsale products tab
+  getAllProductsFromDatabase(12)
+    .then((products) => {
+      // todo : to remove when there's more than 12 products in DB *****************//
+      products = [
+        ...JSON.parse(JSON.stringify(products)),
+        ...JSON.parse(JSON.stringify(products)),
+      ];
+      //*****************************************************************************/
+      const $onsaleProductsTab = $("#onsale-products-tab");
+      $onsaleProductsTab.empty();
+      products.forEach((prod) => {
+        $onsaleProductsTab.append(
+          `
+          <div class="custom-col-5">
+            <div class="single_product">
+              <div class="product_thumb">
+                <a
+                  class="primary_img"
+                  href="/product-details.html?productId=${prod.id}">
+                  <img
+                    src="${
+                      prod.pics.shiftOutAndDelete((pic) => pic.isMain === true)
+                        .bigPicUrl
+                    }" alt="" />
+                </a>
+              </div>
+              <div class="product_content">
+                <h3>
+                  <a href="/product-details.html?productId=${prod.id}">
+                    ${prod.ref}
+                  </a>
+                </h3>
+                <span class="current_price">${prod.price} Dhs</span>
+              </div>
+            </div>
+          </div>
+        `
+        );
+      });
+      applySlickForSectionHomeTabs($onsaleProductsTab);
+    })
+    .catch((error) => console.log(error));
 }

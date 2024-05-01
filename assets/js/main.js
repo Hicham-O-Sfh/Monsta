@@ -5,6 +5,7 @@ import {
   isValidNumberInputValue,
   projectBestSellingProductsInFooter,
   projectProductInPage,
+  projectProductsInHomeTabs,
   projectRelatedProductsInPage,
   retrieveUserCartFromLocalStorage,
   saveCartInLocalStorage,
@@ -57,49 +58,6 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
     autoplayTimeout: 8000,
     items: 1,
     dots: true,
-  });
-
-  /*---product_column3 activation---*/
-  $(".product_column3").slick({
-    centerMode: true,
-    centerPadding: "0",
-    slidesToShow: 5,
-    arrows: true,
-    rows: 2,
-    prevArrow:
-      '<button class="prev_arrow"><i class="fa fa-angle-left"></i></button>',
-    nextArrow:
-      '<button class="next_arrow"><i class="fa fa-angle-right"></i></button>',
-    responsive: [
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-        },
-      },
-    ],
   });
 
   /*---product row 2 activation---*/
@@ -459,6 +417,11 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
       currentPage.pathname.includes("index.html")
     ) {
       projectRelatedProductsInPage();
+    }
+
+    // home
+    if (currentPage.pathname.includes("index.html")) {
+      projectProductsInHomeTabs();
     }
   });
 
