@@ -229,13 +229,8 @@ export function projectProductInPage() {
 }
 
 export function projectRelatedProductsInPage() {
-  getAllProductsFromDatabase(12)
+  getAllProductsFromDatabase(6)
     .then((products) => {
-      products = [
-        ...JSON.parse(JSON.stringify(products)),
-        ...JSON.parse(JSON.stringify(products)),
-        ...JSON.parse(JSON.stringify(products)),
-      ];
       $("#related-products-section").empty();
       products.forEach((prod) => {
         $("#related-products-section").append(
