@@ -1,3 +1,11 @@
+export const PRODUCT_STATUS = Object.freeze({
+  OUT_OF_STOCK: -1,
+  NORMAL: 0,
+  FEATURED: 1,
+  NEW_ARRIVALS: 2,
+  ONSALE: 3,
+});
+
 export const MAIN_DATABASE = new Set([
   {
     id: 1,
@@ -128,6 +136,46 @@ export const MAIN_DATABASE = new Set([
         bigPicUrl: "assets/img/product/product-3-big.jpg",
         smallPicUrl: "assets/img/product/product3.jpg",
         isMain: true,
+      },
+      {
+        bigPicUrl: "assets/img/product/product2-big.jpg",
+        smallPicUrl: "assets/img/product/product2.jpg",
+      },
+      {
+        bigPicUrl: "assets/img/product/product3-big.jpg",
+        smallPicUrl: "assets/img/product/product4.jpg",
+      },
+      {
+        bigPicUrl: "assets/img/product/product-3-big.jpg",
+        smallPicUrl: "assets/img/product/product3.jpg",
+      },
+    ],
+  },
+  {
+    id: 6,
+    ref: "ref-produit-6",
+    price: 600,
+    description:
+      "p6eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in",
+    secondDescription:
+      "p6eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in",
+    pics: [
+      {
+        bigPicUrl: "assets/img/product/product11-big.jpg",
+        smallPicUrl: "assets/img/product/product11.jpg",
+        isMain: true,
+      },
+      {
+        bigPicUrl: "assets/img/product/product11-big.jpg",
+        smallPicUrl: "assets/img/product/product11.jpg",
+      },
+      {
+        bigPicUrl: "assets/img/product/product3-big.jpg",
+        smallPicUrl: "assets/img/product/product4.jpg",
+      },
+      {
+        bigPicUrl: "assets/img/product/product-3-big.jpg",
+        smallPicUrl: "assets/img/product/product3.jpg",
       },
       {
         bigPicUrl: "assets/img/product/product2-big.jpg",
