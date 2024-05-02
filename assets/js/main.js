@@ -3,6 +3,7 @@ import {
   buildVisualCart,
   getCurrentDisplayedProductId,
   isValidNumberInputValue,
+  projectAllProductsInShopPage,
   projectBestSellingProductsInFooter,
   projectProductInPage,
   projectProductsInHomeTabs,
@@ -405,13 +406,13 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
     buildVisualCart();
     projectBestSellingProductsInFooter();
 
-    // product-details
+    // Product-details
     if (currentPage.pathname.includes("product-details.html")) {
       productDetailsPageEvents();
       projectProductInPage();
     }
 
-    // home and product-details
+    // Home and Product-details
     if (
       currentPage.pathname.includes("product-details.html") ||
       currentPage.pathname.includes("index.html")
@@ -419,9 +420,14 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
       projectRelatedProductsInPage();
     }
 
-    // home
+    // Home
     if (currentPage.pathname.includes("index.html")) {
       projectProductsInHomeTabs();
+    }
+
+    // Shop
+    if (currentPage.pathname.includes("shop.html")) {
+      projectAllProductsInShopPage();
     }
   });
 
