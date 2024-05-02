@@ -1470,8 +1470,8 @@ textarea:-ms-input-placeholder {
 
 .mini_cart {
   position: fixed;
-  background: url(https://static.elfsight.com/apps/all-in-one-chat/patterns/background-whatsapp.jpg)
-    center center / cover no-repeat;
+  background: url(../img/bg/background-whatsapp.jpg) center center / cover
+    no-repeat;
   min-width: 355px;
   height: 100%;
   padding: 18px 20px 33px;
