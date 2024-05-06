@@ -165,7 +165,7 @@ export function addOrderToCart(orderToAdd) {
 export function retrieveUserCartFromLocalStorage() {
   var rawUserCart = localStorage.getItem("panier");
   var userCart = JSON.parse(rawUserCart);
-  return Array.from(userCart);
+  return Array.from(userCart ?? []);
 }
 
 export function getCurrentDisplayedProductId() {
@@ -184,6 +184,10 @@ export function buildVisualCart() {
 
   // empty & clean cart display, to fill it properly
   $("#cart-items").empty("");
+
+  // make the confiramtion submit button not visible
+  $(".whatsapp-button").addClass("d-none");
+  $("#cart-items").removeClass("cart-items-border");
 
   // loop over all added orders in cart, and display each one correctly
   Array.from(userCart).forEach((order) => {
@@ -217,6 +221,8 @@ export function buildVisualCart() {
 
         // calcul subtotal
         $("#subtotal").html(`${subTotal} Dhs`);
+        $(".whatsapp-button").removeClass("d-none");
+        $("#cart-items").addClass("cart-items-border");
       })
       .catch((error) => {
         alert("Erreur lors du chargement du panier", error);

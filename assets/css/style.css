@@ -1498,10 +1498,13 @@ textarea:-ms-input-placeholder {
   /* background: #242424; */
 }
 
-#cart-items {
-  padding: 5px;
+.cart-items-border {
   border: 1px solid #ccc;
   border-radius: 10px;
+}
+
+#cart-items {
+  padding: 5px;
   max-height: 75%;
   overflow-y: auto;
 }
@@ -11988,7 +11991,7 @@ button[disabled] {
 }
 
 .whatsapp-button {
-  display: inline-block !important;
+  display: inline-block;
   background-color: #25d366 !important;
   color: #fff !important;
   font-size: 16px !important;
