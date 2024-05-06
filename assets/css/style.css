@@ -4140,8 +4140,8 @@ textarea:-ms-input-placeholder {
   }
 }
 .slider_content h1 {
-  font-size: 60px;
-  line-height: 60px;
+  font-size: 50px;
+  line-height: 40px;
   font-weight: 700;
   color: #212121;
   text-transform: capitalize;
@@ -4149,15 +4149,15 @@ textarea:-ms-input-placeholder {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .slider_content h1 {
-    font-size: 48px;
-    line-height: 52px;
+    font-size: 35px;
+    line-height: 30px;
     margin-bottom: 25px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .slider_content h1 {
-    font-size: 45px;
-    line-height: 45px;
+    font-size: 30px;
+    line-height: 25px;
     margin-bottom: 25px;
   }
 }
