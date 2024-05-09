@@ -9380,8 +9380,8 @@ textarea:-ms-input-placeholder {
   width: 100%;
   text-align: left;
   color: #c09578;
-  font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-size: 90%;
+  font-family: cursive;
   font-weight: 700;
 }
 .card-header.card_accor button.btn-link.collapsed {
@@ -9411,11 +9411,12 @@ textarea:-ms-input-placeholder {
 }
 
 .faq_content_wrapper h4 {
+  text-align: center;
   font-size: 18px;
   color: #242424;
   font-weight: 700;
   margin-bottom: 15px;
-  line-height: 18px;
+  line-height: 30px;
 }
 @media only screen and (max-width: 767px) {
   .faq_content_wrapper h4 {
