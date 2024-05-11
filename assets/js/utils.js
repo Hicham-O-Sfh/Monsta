@@ -142,6 +142,7 @@ export function isValidNumberInputValue(value) {
 // Cart management
 export function saveCartInLocalStorage(cart) {
   localStorage.setItem("panier", JSON.stringify(cart));
+  alert(localStorage.key(0))
 }
 
 export function addOrderToCart(orderToAdd) {
