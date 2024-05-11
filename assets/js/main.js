@@ -1,14 +1,13 @@
 import {
-  addOrderToCart,
+  bindCartEvent,
+  bindContactPageEvents,
+  bindProductDetailsPageEvents,
   buildVisualCart,
-  getCurrentDisplayedProductId,
-  isValidNumberInputValue,
   projectAllProductsInShopPage,
   projectBestSellingProductsInFooter,
   projectProductInPage,
   projectProductsInHomeTabs,
   projectRelatedProductsInPage,
-  retrieveUserCartFromLocalStorage,
   saveCartInLocalStorage,
 } from "./utils.js";
 
@@ -374,45 +373,29 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
     perturbance: 0.04,
   });
 
-  function productDetailsPageEvents() {
-    // quantity input validation
-    $("#product-quantity").on("input", function () {
-      $("#button-add-to-cart").prop(
-        "disabled",
-        !isValidNumberInputValue($(this).val())
-      );
-    });
-
-    // Add to cart
-    $("#button-add-to-cart").click(function () {
-      const productId = getCurrentDisplayedProductId();
-      const quantity = +$("#product-quantity").val();
-      const orderToAdd = {
-        productId: productId,
-        quantity: quantity,
-      };
-
-      addOrderToCart(orderToAdd);
-
-      // update the cart display on DOM
-      buildVisualCart();
-    });
-  }
-
   $(document).ready(function () {
     const currentPage = new URL(window.location.href);
 
-    // all pages
+    // todo: to remove later ***********/
+    var cart = [
+      { productId: 1, quantity: 10 },
+      { productId: 2, quantity: 20 },
+    ];
+    saveCartInLocalStorage(cart);
+    /***********************************/
+
+    /* all pages */
     buildVisualCart();
+    bindCartEvent();
     projectBestSellingProductsInFooter();
 
-    // Product-details
+    /* Product-details */
     if (currentPage.pathname.includes("product-details.html")) {
-      productDetailsPageEvents();
+      bindProductDetailsPageEvents();
       projectProductInPage();
     }
 
-    // Home and Product-details
+    /* Home and Product-details */
     if (
       currentPage.pathname.includes("product-details.html") ||
       currentPage.pathname.includes("index.html")
@@ -420,44 +403,19 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
       projectRelatedProductsInPage();
     }
 
-    // Home
+    /* Home */
     if (currentPage.pathname.includes("index.html")) {
       projectProductsInHomeTabs();
     }
 
-    // Shop
+    /* Shop */
     if (currentPage.pathname.includes("shop.html")) {
       projectAllProductsInShopPage();
     }
+
+    /* Contact-us */
+    if (currentPage.pathname.includes("contact-us")) {
+      bindContactPageEvents();
+    }
   });
-
-  (function initMockCart() {
-    // todo: to remove later
-    var cart = [
-      { productId: 1, quantity: 10 },
-      { productId: 2, quantity: 20 },
-    ];
-    saveCartInLocalStorage(cart);
-
-    // Build visual cart display on page init
-    buildVisualCart();
-
-    // Bind automatically removeFromCart event
-    // in all existing & new added related elements
-    $("body").on("click", ".ion-android-close.remove-from-cart", function () {
-      // get cart item from client storage
-      var userCart = retrieveUserCartFromLocalStorage();
-      // get cart item from DOM
-      var cartItemToDelete = $(this).parent().closest(".cart_item").get(0);
-
-      // remove cart item from client storage
-      userCart = userCart.filter(
-        (order) => order.productId != cartItemToDelete.id
-      );
-      saveCartInLocalStorage(userCart);
-
-      // remove & update the cart in the DOM
-      buildVisualCart();
-    });
-  })();
 })(jQuery);

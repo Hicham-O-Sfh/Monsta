@@ -174,6 +174,9 @@ export function getCurrentDisplayedProductId() {
   return productId;
 }
 
+/**
+ * Build visual cart display on page init
+ */
 export function buildVisualCart() {
   var userCart = retrieveUserCartFromLocalStorage();
   var subTotal = 0;
@@ -528,4 +531,72 @@ export function projectAllProductsInShopPage() {
       });
     })
     .catch((error) => console.log(error));
+}
+
+export function bindContactPageEvents() {
+  $("#send-to-whatsapp").click(function (e) {
+    e.preventDefault();
+    const $currentForm = $("#contact-form").get(0);
+    if ($currentForm.reportValidity()) {
+      // if message is written (form is valid)
+      // then redirect & send in our WhatsApp discussion
+      const encodedMessage = encodeURIComponent($("#message-text-area").val());
+      const whatsappURL = "https://wa.me/2120666201740";
+      window.open(`${whatsappURL}?text=${encodedMessage}`, "_blank");
+    }
+  });
+}
+
+/**
+ * Bind automatically removeFromCart event
+ * in all existing & new added related elements
+ */
+export function bindCartEvent() {
+  $("body").on("click", ".ion-android-close.remove-from-cart", function () {
+    // get cart item from client storage
+    var userCart = retrieveUserCartFromLocalStorage();
+    // get cart item from DOM
+    var cartItemToDelete = $(this).parent().closest(".cart_item").get(0);
+
+    // remove cart item from client storage
+    userCart = userCart.filter(
+      (order) => order.productId != cartItemToDelete.id
+    );
+    saveCartInLocalStorage(userCart);
+
+    // remove & update the cart in the DOM
+    buildVisualCart();
+  });
+
+  $("#whatsapp-button").click(function (e) {
+    e.preventDefault();
+    const encodedMessage = encodeURIComponent("just testing");
+    const whatsappURL = "https://wa.me/2120666201740";
+    window.open(`${whatsappURL}?text=${encodedMessage}`, "_blank");
+  });
+}
+
+export function bindProductDetailsPageEvents() {
+  // quantity input validation
+  $("#product-quantity").on("input", function () {
+    $("#button-add-to-cart").prop(
+      "disabled",
+      !isValidNumberInputValue($(this).val())
+    );
+  });
+
+  // Add to cart
+  $("#button-add-to-cart").click(function () {
+    const productId = getCurrentDisplayedProductId();
+    const quantity = +$("#product-quantity").val();
+    const orderToAdd = {
+      productId: productId,
+      quantity: quantity,
+    };
+
+    addOrderToCart(orderToAdd);
+
+    // update the cart display on DOM
+    buildVisualCart();
+  });
 }
