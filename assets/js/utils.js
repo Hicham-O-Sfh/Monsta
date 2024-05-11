@@ -542,7 +542,7 @@ export function bindContactPageEvents() {
       // then redirect & send in our WhatsApp discussion
       const encodedMessage = encodeURIComponent($("#message-text-area").val());
       const whatsappURL = "https://wa.me/2120666201740";
-      window.open(`${whatsappURL}?text=${encodedMessage}`, "_blank");
+      window.open(`${whatsappURL}?text=${encodedMessage}`);
     }
   });
 }
@@ -575,7 +575,7 @@ export function bindCartEvent() {
       `Nombre de produits dans le panier: ${cartItems.length}`
     );
     const whatsappURL = "https://wa.me/2120666201740";
-    window.open(`${whatsappURL}?text=${encodedMessage}`, "_blank");
+    window.open(`${whatsappURL}?text=${encodedMessage}`);
   });
 }
 
