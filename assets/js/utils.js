@@ -189,7 +189,7 @@ export function buildVisualCart() {
   $("#cart-items").empty("");
 
   // make the confiramtion submit button not visible
-  $(".whatsapp-button").addClass("d-none");
+  $("#whatsapp-button").addClass("d-none");
   $("#cart-items").removeClass("cart-items-border");
 
   // loop over all added orders in cart, and display each one correctly
@@ -224,7 +224,7 @@ export function buildVisualCart() {
 
         // calcul subtotal
         $("#subtotal").html(`${subTotal} Dhs`);
-        $(".whatsapp-button").removeClass("d-none");
+        $("#whatsapp-button").removeClass("d-none");
         $("#cart-items").addClass("cart-items-border");
       })
       .catch((error) => {

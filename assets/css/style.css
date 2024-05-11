@@ -11996,7 +11996,7 @@ button[disabled] {
   cursor: not-allowed;
 }
 
-.whatsapp-button {
+#whatsapp-button {
   display: inline-block;
   background-color: #25d366 !important;
   color: #fff !important;
@@ -12008,12 +12008,12 @@ button[disabled] {
   transition: background-color 0.3s ease !important;
 }
 
-.whatsapp-button img {
+#whatsapp-button img {
   vertical-align: middle !important;
   margin-right: 10px !important;
 }
 
-.whatsapp-button span {
+#whatsapp-button span {
   vertical-align: middle !important;
 }
 
