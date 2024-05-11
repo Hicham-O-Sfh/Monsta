@@ -369,14 +369,6 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
   $(document).ready(function () {
     const currentPage = new URL(window.location.href);
 
-    // todo: to remove later ***********/
-    var cart = [
-      { productId: 1, quantity: 10 },
-      { productId: 2, quantity: 20 },
-    ];
-    saveCartInLocalStorage(cart);
-    /***********************************/
-
     /* all pages */
     buildVisualCart();
     bindCartEvent();
