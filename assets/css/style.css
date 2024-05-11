@@ -9163,28 +9163,33 @@ textarea:-ms-input-placeholder {
   border: 1px solid #ebebeb;
   background: #ffffff;
   resize: none;
-  margin-bottom: 20px;
+  margin-top: 12%;
+  margin-bottom: 10px;
+  border-radius: 25px;
   width: 100%;
   padding: 10px 20px;
   color: #5a5a5a;
 }
-.contact_message button {
-  font-weight: 400;
-  height: 42px;
-  line-height: 42px;
-  padding: 0 30px;
-  text-transform: capitalize;
+#send-to-whatsapp {
+  line-height: 300%;
+  padding: 0px 15px;
   border: none;
-  background: #242424;
-  color: #ffffff;
-  cursor: pointer;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  border-radius: 4px;
-}
-.contact_message button:hover {
+  color: #ffffff !important;
+  margin-top: 345%;
+  margin-bottom: 10px;
+  position: absolute;
+  bottom: 0;
+  border-radius: 100px;
   background: #c09578;
 }
+
+.contact_textarea {
+  position: relative;
+  border-radius: 25px;
+  background: url(../img/bg/background-whatsapp.jpg) center center / cover
+    no-repeat;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .contact_message.content {
     margin-bottom: 62px;
