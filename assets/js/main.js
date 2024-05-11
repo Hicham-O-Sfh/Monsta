@@ -9,7 +9,7 @@ import {
   projectProductsInHomeTabs,
   projectRelatedProductsInPage,
   saveCartInLocalStorage,
-} from "./utils.js";
+} from "../js/utils.js";
 
 // generic & custom addons for app
 Array.prototype.shiftOutAndDelete = function (predicate) {
