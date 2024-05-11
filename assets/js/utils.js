@@ -568,15 +568,15 @@ export function bindCartEvent() {
     buildVisualCart();
   });
 
-  $("#whatsapp-button").click(function (e) {
-    e.preventDefault();
-    const cartItems = retrieveUserCartFromLocalStorage();
-    const encodedMessage = encodeURIComponent(
-      `Nombre de produits dans le panier: ${cartItems.length}`
-    );
-    const whatsappURL = "https://wa.me/2120666201740";
-    window.open(`${whatsappURL}?text=${encodedMessage}`);
-  });
+  // $("#whatsapp-button").click(function (e) {
+  //   e.preventDefault();
+  //   const cartItems = retrieveUserCartFromLocalStorage();
+  //   const encodedMessage = encodeURIComponent(
+  //     `Nombre de produits dans le panier: ${cartItems.length}`
+  //   );
+  //   const whatsappURL = "https://wa.me/2120666201740";
+  //   window.open(`${whatsappURL}?text=${encodedMessage}`);
+  // });
 }
 
 export function bindProductDetailsPageEvents() {
