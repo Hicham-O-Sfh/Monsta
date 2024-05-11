@@ -3,7 +3,7 @@
 import {
   getAllProductsFromDatabase,
   getProductFromDatabase,
-} from "./database.management.js";
+} from "../js/database.management.js";
 
 /*---pluggin dynamic usage---*/
 // Slick
@@ -204,12 +204,12 @@ export function buildVisualCart() {
           `
           <div class="cart_item" id="${order.productId}">
             <div class="cart_img">
-              <a href="/product-details.html?productId=${mappedProductFromDb.id}">
+              <a href="product-details.html?productId=${mappedProductFromDb.id}">
                 <img src="${productMainPic}" alt=""/>
               </a>
             </div>
             <div class="cart_info">
-              <a href="/product-details.html?productId=${mappedProductFromDb.id}">${mappedProductFromDb.ref}</a>
+              <a href="product-details.html?productId=${mappedProductFromDb.id}">${mappedProductFromDb.ref}</a>
               <span class="quantity">quantité: ${order.quantity}</span>
               <span class="price_cart">${mappedProductFromDb.price} Dhs</span>
             </div>
@@ -293,7 +293,7 @@ export function projectRelatedProductsInPage() {
               <div class="product_thumb">
                 <a 
                   class="primary_img" 
-                  href="/product-details.html?productId=${prod.id}">
+                  href="product-details.html?productId=${prod.id}">
                   <img 
                     src="${
                       prod.pics.shiftOutAndDelete((pic) => pic.isMain === true)
@@ -303,7 +303,7 @@ export function projectRelatedProductsInPage() {
               </div>
               <div class="product_content">
                 <h3>
-                  <a href="/product-details.html?productId=${prod.id}">
+                  <a href="product-details.html?productId=${prod.id}">
                     ${prod.ref}
                   </a>
                 </h3>
@@ -334,7 +334,7 @@ export function projectBestSellingProductsInFooter() {
           `
           <div class="simple_product_items">
             <div class="simple_product_thumb">
-              <a href="/product-details.html?productId=${product.id}">
+              <a href="product-details.html?productId=${product.id}">
                 <img 
                 src="${
                   product.pics.shiftOutAndDelete((pic) => pic.isMain === true)
@@ -346,7 +346,7 @@ export function projectBestSellingProductsInFooter() {
             <div class="simple_product_content">
               <div class="product_name">
                 <h3>
-                  <a href="/product-details.html?productId=${product.id}">
+                  <a href="product-details.html?productId=${product.id}">
                     ${product.ref}
                   </a>
                 </h3>
@@ -385,7 +385,7 @@ export function projectProductsInHomeTabs() {
               <div class="product_thumb">
                 <a 
                   class="primary_img" 
-                  href="/product-details.html?productId=${prod.id}">
+                  href="product-details.html?productId=${prod.id}">
                   <img 
                     src="${
                       prod.pics.shiftOutAndDelete((pic) => pic.isMain === true)
@@ -395,7 +395,7 @@ export function projectProductsInHomeTabs() {
               </div>
               <div class="product_content">
                 <h3>
-                  <a href="/product-details.html?productId=${prod.id}">
+                  <a href="product-details.html?productId=${prod.id}">
                     ${prod.ref}
                   </a>
                 </h3>
@@ -429,7 +429,7 @@ export function projectProductsInHomeTabs() {
               <div class="product_thumb">
                 <a
                   class="primary_img"
-                  href="/product-details.html?productId=${prod.id}">
+                  href="product-details.html?productId=${prod.id}">
                   <img
                     src="${
                       prod.pics.shiftOutAndDelete((pic) => pic.isMain === true)
@@ -439,7 +439,7 @@ export function projectProductsInHomeTabs() {
               </div>
               <div class="product_content">
                 <h3>
-                  <a href="/product-details.html?productId=${prod.id}">
+                  <a href="product-details.html?productId=${prod.id}">
                     ${prod.ref}
                   </a>
                 </h3>
@@ -473,7 +473,7 @@ export function projectProductsInHomeTabs() {
               <div class="product_thumb">
                 <a
                   class="primary_img"
-                  href="/product-details.html?productId=${prod.id}">
+                  href="product-details.html?productId=${prod.id}">
                   <img
                     src="${
                       prod.pics.shiftOutAndDelete((pic) => pic.isMain === true)
@@ -483,7 +483,7 @@ export function projectProductsInHomeTabs() {
               </div>
               <div class="product_content">
                 <h3>
-                  <a href="/product-details.html?productId=${prod.id}">
+                  <a href="product-details.html?productId=${prod.id}">
                     ${prod.ref}
                   </a>
                 </h3>
