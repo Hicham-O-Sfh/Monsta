@@ -366,13 +366,6 @@ Array.prototype.shiftOutAndDelete = function (predicate) {
     }
   });
 
-  /*js ripples activation*/
-  $(".js-ripples").ripples({
-    resolution: 512,
-    dropRadius: 20,
-    perturbance: 0.04,
-  });
-
   $(document).ready(function () {
     const currentPage = new URL(window.location.href);
 
