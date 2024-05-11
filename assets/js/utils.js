@@ -142,7 +142,6 @@ export function isValidNumberInputValue(value) {
 // Cart management
 export function saveCartInLocalStorage(cart) {
   localStorage.setItem("panier", JSON.stringify(cart));
-  alert(localStorage.key(0))
 }
 
 export function addOrderToCart(orderToAdd) {
@@ -569,15 +568,15 @@ export function bindCartEvent() {
     buildVisualCart();
   });
 
-  // $("#whatsapp-button").click(function (e) {
-  //   e.preventDefault();
-  //   const cartItems = retrieveUserCartFromLocalStorage();
-  //   const encodedMessage = encodeURIComponent(
-  //     `Nombre de produits dans le panier: ${cartItems.length}`
-  //   );
-  //   const whatsappURL = "https://wa.me/2120666201740";
-  //   window.open(`${whatsappURL}?text=${encodedMessage}`);
-  // });
+  $("#whatsapp-button").click(function (e) {
+    e.preventDefault();
+    const cartItems = retrieveUserCartFromLocalStorage();
+    const encodedMessage = encodeURIComponent(
+      `TestTest, Actuellement nombre de produits dans le panier: ${cartItems.length}`
+    );
+    const whatsappURL = "https://wa.me/2120666201740";
+    window.open(`${whatsappURL}?text=${encodedMessage}`);
+  });
 }
 
 export function bindProductDetailsPageEvents() {
