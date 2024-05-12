@@ -100,7 +100,7 @@ export function applyOwlCarousel() {
     autoplay: false,
     loop: true,
     nav: true,
-    items: 4,
+    items: 3,
     margin: 15,
     dots: false,
     navText: [
@@ -119,7 +119,7 @@ export function applyOwlCarousel() {
         items: 3,
       },
       1200: {
-        items: 4,
+        items: 3,
       },
     },
   });
@@ -133,6 +133,9 @@ export function applyElevateZoom() {
     cursor: "crosshair",
     zoomType: "inner",
   });
+  setTimeout(function () {
+    $(".zoomWindow").css("border-radius", "20px");
+  }, 100);
 }
 
 export function isValidNumberInputValue(value) {
@@ -521,7 +524,7 @@ export function projectAllProductsInShopPage() {
                   <a href="product-details.html?productId=${prod.id}">${prod.ref}</a>
                 </h3>
                 <div class="price_box">
-                  <span class="current_price">${prod.price}</span>
+                  <span class="current_price">${prod.price} Dhs</span>
                 </div>
               </div>
             </div>
@@ -603,3 +606,8 @@ export function bindProductDetailsPageEvents() {
     buildVisualCart();
   });
 }
+
+/**
+todo ?
+- remove and replace "shiftOutAndDelete" by "find", remove pics duplications in all products    
+*/

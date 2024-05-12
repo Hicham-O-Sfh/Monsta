@@ -156,6 +156,7 @@ input[type="submit"] {
 }
 
 img {
+  border-radius: 20px;
   max-width: 100%;
   height: auto;
 }
@@ -7588,8 +7589,11 @@ textarea:-ms-input-placeholder {
 }
 
 #img-1 {
-  border: 1px solid #ebebeb;
   text-align: center;
+}
+
+#zoom1 {
+  border-radius: 20px;
 }
 
 .product_details {
@@ -8110,8 +8114,8 @@ textarea:-ms-input-placeholder {
     width: 101%;
   }
 }
-.single-zoom-thumb ul li {
-  border: 1px solid #ddd;
+.single-zoom-thumb ul li a img {
+  border-radius: 20px;
 }
 .single-zoom-thumb ul li a {
   width: 100%;
