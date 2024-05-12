@@ -8,7 +8,6 @@ import {
   projectProductInPage,
   projectProductsInHomeTabs,
   projectRelatedProductsInPage,
-  saveCartInLocalStorage,
 } from "../js/utils.js";
 
 // generic & custom addons for app
