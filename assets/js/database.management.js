@@ -9,29 +9,31 @@ export const PRODUCT_STATUS = Object.freeze({
 export const MAIN_DATABASE = new Set([
   {
     id: 1,
-    ref: "ref-produit-1",
-    price: 100,
+    ref: "Bracelet de Luxe, Louis Vitton",
+    price: 130,
     description:
-      "p1eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in",
-    secondDescription:
-      "p1eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in",
+      "Élégant et robuste, notre bracelet doré Louis Vuitton est l'accessoire parfait pour tous les jours. Fabriqué en acier inoxydable de qualité, il allie style et solidité. Avec son design chic et intemporel, il ajoutera une touche de classe à toutes vos tenues. Optez pour le luxe au quotidien avec ce bijou qui fera sensation à chaque fois que vous le porterez.",
+    secondDescription: `
+        Marque: Louis Vitton.<br>
+        Qualité: Acier Inoxydable.<br>
+        Couleur: OR, Dorée.`,
     pics: [
       {
-        bigPicUrl: "assets/img/product/product1-big.jpg",
-        smallPicUrl: "assets/img/product/product13.jpg",
+        bigPicUrl: "assets/img/product/bracelet-LV-big.jpg",
+        smallPicUrl: "assets/img/product/bracelet-LV.jpg",
         isMain: true,
       },
       {
-        bigPicUrl: "assets/img/product/product2-big.jpg",
-        smallPicUrl: "assets/img/product/product2.jpg",
+        bigPicUrl: "assets/img/product/bracelet-LV-big.jpg",
+        smallPicUrl: "assets/img/product/bracelet-LV.jpg",
       },
       {
-        bigPicUrl: "assets/img/product/product3-big.jpg",
-        smallPicUrl: "assets/img/product/product4.jpg",
+        bigPicUrl: "assets/img/product/bracelet-LV-1-big.jpeg",
+        smallPicUrl: "assets/img/product/bracelet-LV-1.jpeg",
       },
       {
-        bigPicUrl: "assets/img/product/product1-big.jpg",
-        smallPicUrl: "assets/img/product/product13.jpg",
+        bigPicUrl: "assets/img/product/bracelet-LV-2-big.jpeg",
+        smallPicUrl: "assets/img/product/bracelet-LV-2.jpeg",
       },
     ],
   },
